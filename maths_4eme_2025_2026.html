@@ -1,0 +1,1656 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mathématiques — 4ème — Programme 2025-2026</title>
+<style>
+  :root {
+    --bg: #f0f7ff;
+    --card: #ffffff;
+    --primary: #1565c0;
+    --accent: #e65100;
+    --accent-soft: #fff3e0;
+    --text: #1a1a1a;
+    --muted: #5a5a5a;
+    --border: #d0e0f0;
+    --answer-bg: #eaf5ec;
+    --answer-border: #2e8b57;
+    --input-bg: #fffef0;
+    --formula-bg: #e8f0fe;
+    --formula-border: #4285f4;
+    --tip-bg: #fff8e1;
+    --tip-border: #f9a825;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+  header {
+    background: linear-gradient(135deg, var(--primary) 0%, #0d47a1 100%);
+    color: white;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    border-bottom: 4px solid var(--accent);
+  }
+
+  header h1 { margin: 0 0 0.5rem 0; font-size: 1.8rem; }
+  header p { margin: 0.25rem 0; opacity: 0.9; font-size: 0.95rem; }
+
+  main { max-width: 960px; margin: 0 auto; padding: 1.5rem; }
+
+  .controls {
+    display: flex; gap: 0.5rem; flex-wrap: wrap;
+    margin-bottom: 1rem; justify-content: center;
+  }
+
+  .controls button {
+    background: var(--primary); color: white; border: none;
+    padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer;
+    font-size: 0.9rem; transition: background 0.2s;
+  }
+  .controls button:hover { background: var(--accent); }
+  .controls button.danger { background: #8b0000; }
+  .controls button.danger:hover { background: var(--accent); }
+
+  .storage-note {
+    text-align: center; color: var(--muted); font-size: 0.85rem;
+    margin-bottom: 1.5rem; font-style: italic;
+  }
+
+  details.chapter {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 10px; margin-bottom: 1rem; overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  }
+
+  details.chapter > summary {
+    padding: 1rem 1.25rem; cursor: pointer; font-weight: 600;
+    font-size: 1.15rem; color: var(--primary); background: #f5f9ff;
+    border-bottom: 1px solid var(--border); list-style: none;
+  }
+  details.chapter > summary::-webkit-details-marker { display: none; }
+  details.chapter > summary::before {
+    content: "▸"; display: inline-block; margin-right: 0.5rem;
+    transition: transform 0.2s; color: var(--accent);
+  }
+  details.chapter[open] > summary::before { transform: rotate(90deg); }
+
+  details.section {
+    border-left: 3px solid var(--accent); margin: 1rem 1.25rem;
+    background: #fdfcf8; border-radius: 6px; overflow: hidden;
+  }
+  details.section > summary {
+    padding: 0.75rem 1rem; cursor: pointer; font-weight: 600;
+    color: var(--primary); list-style: none;
+  }
+  details.section > summary::-webkit-details-marker { display: none; }
+  details.section > summary::before {
+    content: "▸"; display: inline-block; margin-right: 0.5rem;
+    transition: transform 0.2s; color: var(--muted); font-size: 0.85rem;
+  }
+  details.section[open] > summary::before { transform: rotate(90deg); }
+
+  .section-content { padding: 0 1rem 1rem 1rem; }
+
+  .block { margin: 1rem 0; }
+  .block h4 {
+    margin: 0.75rem 0 0.5rem 0; color: var(--accent); font-size: 1rem;
+    text-transform: uppercase; letter-spacing: 0.5px;
+    border-bottom: 1px dotted var(--border); padding-bottom: 0.25rem;
+  }
+
+  ol, ul { margin: 0.5rem 0; padding-left: 1.5rem; }
+  li { margin: 0.4rem 0; }
+
+  .formula {
+    background: var(--formula-bg); border: 1px solid var(--formula-border);
+    border-radius: 8px; padding: 0.6rem 1.2rem; margin: 0.6rem 0;
+    font-size: 1.05rem; text-align: center; font-weight: 500;
+    color: #0d47a1;
+  }
+
+  .formula-group {
+    background: var(--formula-bg); border-left: 4px solid var(--formula-border);
+    border-radius: 0 8px 8px 0; padding: 0.75rem 1rem; margin: 0.6rem 0;
+  }
+  .formula-group .formula-title {
+    font-weight: 700; color: var(--primary); font-size: 0.85rem;
+    text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.4rem;
+  }
+
+  .tip {
+    background: var(--tip-bg); border-left: 4px solid var(--tip-border);
+    border-radius: 0 6px 6px 0; padding: 0.5rem 0.75rem; margin: 0.5rem 0;
+    font-size: 0.92rem;
+  }
+  .tip::before { content: "💡 "; }
+
+  blockquote {
+    margin: 0.5rem 0; padding: 0.5rem 0.75rem;
+    border-left: 3px solid var(--primary); background: #f0f4f8;
+    color: var(--text); font-style: italic; border-radius: 0 4px 4px 0;
+  }
+
+  a { color: var(--primary); text-decoration: none; border-bottom: 1px dotted var(--primary); }
+  a:hover { color: var(--accent); border-bottom-style: solid; }
+
+  .user-input {
+    border: 1px solid #bbb; border-bottom: 2px solid var(--primary);
+    border-radius: 4px; padding: 0.15rem 0.5rem; font-size: 0.95rem;
+    font-family: inherit; background: var(--input-bg); min-width: 80px;
+    color: var(--text); transition: border-color 0.2s, background 0.2s;
+  }
+  .user-input:focus { outline: none; border-color: var(--accent); background: white; }
+  .user-input.filled { background: #f0fff4; border-bottom-color: var(--answer-border); }
+  .user-input.wide { min-width: 200px; }
+
+  .user-textarea {
+    display: block; width: 100%; min-height: 70px;
+    border: 1px solid #bbb; border-radius: 6px; padding: 0.5rem 0.75rem;
+    font-family: inherit; font-size: 0.95rem; background: var(--input-bg);
+    resize: vertical; margin-top: 0.5rem; color: var(--text);
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .user-textarea:focus { outline: none; border-color: var(--accent); background: white; }
+  .user-textarea.filled { background: #f0fff4; border-left: 3px solid var(--answer-border); }
+
+  .field-label {
+    display: block; font-size: 0.8rem; color: var(--muted); margin-top: 0.5rem;
+    margin-bottom: 0.15rem; text-transform: uppercase; letter-spacing: 0.5px;
+  }
+
+  .answer-block { margin-top: 0.75rem; }
+
+  .toggle-answer {
+    background: var(--accent); color: white; border: none;
+    padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer;
+    font-size: 0.9rem; font-weight: 500; transition: background 0.2s, transform 0.1s;
+  }
+  .toggle-answer:hover { background: #bf360c; }
+  .toggle-answer:active { transform: scale(0.97); }
+
+  .answer {
+    display: none; margin-top: 0.75rem; padding: 0.75rem 1rem;
+    background: var(--answer-bg); border-left: 4px solid var(--answer-border);
+    border-radius: 0 6px 6px 0; animation: fadeIn 0.25s ease-out;
+  }
+  .answer.visible { display: block; }
+  .answer-label {
+    font-weight: 600; color: var(--answer-border); font-size: 0.85rem;
+    text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.25rem;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-4px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .intro-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 10px; padding: 1.25rem 1.5rem; margin-bottom: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  }
+  .intro-card h2 { margin-top: 0; color: var(--primary); }
+
+  .static-section {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 10px; padding: 1.25rem 1.5rem; margin-bottom: 1rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  }
+  .static-section h2 {
+    margin-top: 0; color: var(--primary);
+    border-bottom: 2px solid var(--accent); padding-bottom: 0.5rem;
+  }
+  .static-section h3 { color: var(--primary); margin-top: 1rem; }
+
+  .ref-links {
+    margin-top: 0.5rem; padding: 0.4rem 0.75rem;
+    background: #fbf8ee; border-left: 3px solid #c9b27a;
+    border-radius: 0 4px 4px 0; font-size: 0.88rem;
+  }
+  .ref-links .ref-label {
+    font-weight: 600; color: #8b6914; font-size: 0.75rem;
+    text-transform: uppercase; letter-spacing: 0.6px; display: block; margin-bottom: 0.2rem;
+  }
+  .ref-links ul { margin: 0.2rem 0 0 0; padding-left: 1.1rem; }
+  .ref-links li { margin: 0.1rem 0; }
+  .ref-links a { color: #6b4f0f; border-bottom-color: #c9b27a; }
+  .ref-links a:hover { color: var(--accent); }
+
+  .save-indicator {
+    position: fixed; bottom: 1.5rem; right: 1.5rem;
+    background: var(--answer-border); color: white;
+    padding: 0.5rem 1rem; border-radius: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    opacity: 0; transform: translateY(10px);
+    transition: opacity 0.25s, transform 0.25s;
+    z-index: 1000; font-size: 0.85rem; pointer-events: none;
+  }
+  .save-indicator.visible { opacity: 1; transform: translateY(0); }
+
+  .progress-pill {
+    display: inline-block; background: var(--primary); color: white;
+    border-radius: 12px; padding: 0.1rem 0.6rem; font-size: 0.75rem;
+    margin-left: 0.5rem; vertical-align: middle; font-weight: normal;
+  }
+
+  .chapter-tag {
+    display: inline-block; background: var(--accent); color: white;
+    border-radius: 4px; padding: 0.1rem 0.5rem; font-size: 0.75rem;
+    margin-right: 0.5rem; vertical-align: middle; font-weight: normal;
+  }
+
+  .ex-num {
+    display: inline-block; background: var(--primary); color: white;
+    border-radius: 50%; width: 1.4em; height: 1.4em; text-align: center;
+    line-height: 1.4em; font-size: 0.85rem; margin-right: 0.4rem;
+    font-weight: 600; flex-shrink: 0;
+  }
+
+  .ex-row { display: flex; align-items: center; margin: 0.5rem 0; gap: 0.4rem; }
+
+  table.data-table {
+    border-collapse: collapse; width: 100%; margin: 0.5rem 0; font-size: 0.95rem;
+  }
+  table.data-table th, table.data-table td {
+    border: 1px solid var(--border); padding: 0.4rem 0.75rem; text-align: center;
+  }
+  table.data-table th { background: #e8f0fe; color: var(--primary); font-weight: 600; }
+  table.data-table td.input-cell { padding: 0.2rem; }
+  table.data-table input { width: 80px; text-align: center; }
+
+  footer {
+    text-align: center; padding: 1.5rem; color: var(--muted); font-size: 0.85rem;
+  }
+
+  @media (max-width: 600px) {
+    header h1 { font-size: 1.4rem; }
+    main { padding: 1rem; }
+    details.section { margin: 0.75rem 0.5rem; }
+    .user-input { min-width: 60px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Mathématiques — 4<sup>ème</sup></h1>
+  <p>Cours, exercices et corrections · Programme 2025-2026</p>
+  <p>Nombres · Algèbre · Géométrie · Statistiques &amp; Probabilités</p>
+</header>
+
+<main>
+
+<div class="intro-card">
+  <h2>Comment utiliser ce cahier <span id="progress-pill" class="progress-pill">0 / 0</span></h2>
+  <ul>
+    <li>Lis d'abord le <strong>Cours &amp; rappels</strong> de chaque chapitre</li>
+    <li>Essaie de répondre aux exercices <strong>avant</strong> d'afficher la correction</li>
+    <li>Note ta réponse dans le champ, puis clique sur <em>Afficher la correction</em></li>
+    <li>Tes réponses sont sauvegardées automatiquement dans ce navigateur</li>
+  </ul>
+</div>
+
+<div class="controls">
+  <button onclick="toggleAllAnswers(true)">Afficher toutes les corrections</button>
+  <button onclick="toggleAllAnswers(false)">Masquer toutes les corrections</button>
+  <button onclick="toggleAllDetails(true)">Tout déplier</button>
+  <button onclick="toggleAllDetails(false)">Tout replier</button>
+  <button onclick="exportAnswers()">Exporter mes réponses</button>
+  <button class="danger" onclick="clearAllAnswers()">Effacer mes réponses</button>
+</div>
+<p class="storage-note">Tes réponses sont enregistrées automatiquement dans ce navigateur.</p>
+
+<!-- ═══════════════════════════════════════════════════════════
+     CHAPITRE 1 — FRACTIONS
+═══════════════════════════════════════════════════════════ -->
+<details class="chapter" open>
+  <summary><span class="chapter-tag">Chap. 1</span> Fractions et calculs fractionnaires</summary>
+
+  <details class="section" open>
+    <summary>Cours &amp; rappels</summary>
+    <div class="section-content">
+      <div class="ref-links">
+        <span class="ref-label">Ressources en ligne</span>
+        <ul>
+          <li><a href="https://www.maths-et-tiques.fr/index.php/cours-maths/quatrieme" target="_blank" rel="noopener">Maths et Tiques — Cours de 4ème</a></li>
+          <li><a href="https://fr.khanacademy.org/math/arithmetic/fraction-arithmetic" target="_blank" rel="noopener">Khan Academy — Arithmétique des fractions</a></li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <h4>Additionner et soustraire des fractions</h4>
+        <p>On réduit d'abord les fractions au <strong>même dénominateur</strong>, puis on additionne (ou soustrait) les numérateurs.</p>
+        <div class="formula-group">
+          <div class="formula-title">Même dénominateur</div>
+          <div class="formula">a/n + b/n = (a + b)/n</div>
+        </div>
+        <div class="formula-group">
+          <div class="formula-title">Dénominateurs différents — exemple</div>
+          <div class="formula">1/3 + 1/4 = 4/12 + 3/12 = 7/12</div>
+        </div>
+        <div class="tip">Le nouveau dénominateur est le PPCM (le plus petit commun multiple) des deux dénominateurs.</div>
+      </div>
+
+      <div class="block">
+        <h4>Multiplier des fractions</h4>
+        <div class="formula">a/b × c/d = (a × c) / (b × d)</div>
+        <p><strong>Exemple :</strong> 2/3 × 3/4 = (2 × 3) / (3 × 4) = 6/12 = 1/2</p>
+      </div>
+
+      <div class="block">
+        <h4>Diviser par une fraction</h4>
+        <p>Diviser par une fraction revient à <strong>multiplier par son inverse</strong>.</p>
+        <div class="formula">a/b ÷ c/d = a/b × d/c = (a × d) / (b × c)</div>
+        <p><strong>Exemple :</strong> 3/4 ÷ 2/5 = 3/4 × 5/2 = 15/8</p>
+      </div>
+
+      <div class="block">
+        <h4>Simplifier une fraction</h4>
+        <p>On divise le numérateur et le dénominateur par leur PGCD (plus grand commun diviseur).</p>
+        <p><strong>Exemple :</strong> 12/18 — PGCD(12,18) = 6 — donc 12/18 = 2/3</p>
+      </div>
+    </div>
+  </details>
+
+  <details class="section">
+    <summary>Exercices de base</summary>
+    <div class="section-content">
+
+      <div class="block">
+        <h4>Exercice 1 — Même dénominateur</h4>
+        <p>Calcule (donne le résultat en fraction simplifiée) :</p>
+        <div class="ex-row"><span class="ex-num">1</span> 3/7 + 2/7 = <input type="text" class="user-input" data-key="c1-b1-1" placeholder="…"></div>
+        <div class="ex-row"><span class="ex-num">2</span> 5/9 - 2/9 = <input type="text" class="user-input" data-key="c1-b1-2" placeholder="…"></div>
+        <div class="ex-row"><span class="ex-num">3</span> 4/11 + 7/11 = <input type="text" class="user-input" data-key="c1-b1-3" placeholder="…"></div>
+        <div class="answer-block">
+          <button class="toggle-answer" onclick="toggleAnswer(this)">Afficher la correction</button>
+          <div class="answer">
+            <div class="answer-label">Correction</div>
+            <ol>
+              <li>3/7 + 2/7 = <strong>5/7</strong></li>
+              <li>5/9 - 2/9 = <strong>3/9 = 1/3</strong></li>
+              <li>4/11 + 7/11 = <strong>11/11 = 1</strong></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <div class="block">
+        <h4>Exercice 2 — Dénominateurs différents</h4>
+        <p>Calcule en réduisant au même dénominateur :</p>
+        <div class="ex-row"><span class="ex-num">1</span> 1/2 + 1/4 = <input type="text" class="user-input" data-key="c1-b2-1" placeholder="…"></div>
+        <div class="ex-row"><span class="ex-num">2</span> 3/4 - 1/3 = <input type="text" class="user-input" data-key="c1-b2-2" placeholder="…"></div>
+        <div class="ex-row"><span class="ex-num">3</span> 2/5 + 1/3 = <input type="text" class="user-input" data-key="c1-b2-3" placeholder="…"></div>
+        <div class="ex-row"><span class="ex-num">4</span> 5/6 - 1/4 = <input type="text" class="user-input" data-key="c1-b2-4" placeholder="…"></div>
+        <div class="answer-block">
+          <button class="toggle-answer" onclick="toggleAnswer(this)">Afficher la correction</button>
+          <div class="answer">
+            <div class="answer-label">Correction</div>
+            <ol>
+              <li>1/2 + 1/4 = 2/4 + 1/4 = <strong>3/4</strong></li>
+              <li>3/4 - 1/3 = 9/12 - 4/12 = <strong>5/12</strong></li>
+              <li>2/5 + 1/3 = 6/15 + 5/15 = <strong>11/15</strong></li>
+              <li>5/6 - 1/4 = 10/12 - 3/12 = <strong>7/12</strong></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <div class="block">
+        <h4>Exercice 3 — Multiplication et division</h4>
+        <div class="ex-row"><span class="ex-num">1</span> 2/3 × 3/5 = <input type="text" class="user-input" data-key="c1-b3-1" placeholder="…"></div>
+        <div class="ex-row"><span class="ex-num">2</span> 4/7 × 7/8 = <input type="text" class="user-input" data-key="c1-b3-2" placeholder="…"></div>
+        <div class="ex-row"><span class="ex-num">3</span> 3/4 ÷ 1/2 = <input type="text" class="user-input" data-key="c1-b3-3" placeholder="…"></div>
+        <div class="ex-row"><span class="ex-num">4</span> 2/5 ÷ 4/15 = <input type="text" class="user-input" data-key="c1-b3-4" placeholder="…"></div>
+        <div class="answer-block">
+          <button class="toggle-answer" onclick="toggleAnswer(this)">Afficher la correction</button>
+          <div class="answer">
+            <div class="answer-label">Correction</div>
+            <ol>
+              <li>2/3 × 3/5 = 6/15 = <strong>2/5</strong></li>
+              <li>4/7 × 7/8 = 28/56 = <strong>1/2</strong></li>
+              <li>3/4 ÷ 1/2 = 3/4 × 2/1 = 6/4 = <strong>3/2</strong></li>
+              <li>2/5 ÷ 4/15 = 2/5 × 15/4 = 30/20 = <strong>3/2</strong></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </details>
+
+  <details class="section">
+    <summary>Exercices intermédiaires</summary>
+    <div class="section-content">
+
+      <div class="block">
+        <h4>Exercice 4 — Calculs en plusieurs étapes</h4>
+        <p>Calcule :</p>
+        <div class="ex-row"><span class="ex-num">1</span> (1/2 + 1/3) × 6 = <input type="text" class="user-input" data-key="c1-i1-1" placeholder="…"></div>
+        <div class="ex-row"><span class="ex-num">2</span> 3/4 × (2/3 + 1/6) = <input type="text" class="user-input" data-key="c1-i1-2" placeholder="…"></div>
+        <div class="ex-row"><span class="ex-num">3</span> (5/6 - 1/3) ÷ 1/4 = <input type="text" class="user-input" data-key="c1-i1-3" placeholder="…"></div>
+        <div class="answer-block">
+          <button class="toggle-answer" onclick="toggleAnswer(this)">Afficher la correction</button>
+          <div class="answer">
+            <div class="answer-label">Correction</div>
+            <ol>
+              <li>(1/2 + 1/3) × 6 = (3/6 + 2/6) × 6 = 5/6 × 6 = <strong>5</strong></li>
+              <li>3/4 × (4/6 + 1/6) = 3/4 × 5/6 = 15/24 = <strong>5/8</strong></li>
+              <li>(5/6 - 2/6) ÷ 1/4 = 3/6 × 4/1 = 1/2 × 4 = <strong>2</strong></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <div class="block">
+        <h4>Problème — Gâteau</h4>
+        <p>Un gâteau est partagé entre trois personnes. Léa mange 1/4 du gâteau, Tom mange 1/3, et Zoé mange 1/6.</p>
+        <p><strong>a)</strong> Quelle fraction du gâteau ont-ils mangée en tout ?</p>
+        <label class="field-label">Ta réponse</label>
+        <input type="text" class="user-input wide" data-key="c1-pb1-a" placeholder="…">
+        <p><strong>b)</strong> Quelle fraction du gâteau reste-t-il ?</p>
+        <label class="field-label">Ta réponse</label>
+        <input type="text" class="user-input wide" data-key="c1-pb1-b" placeholder="…">
+        <div class="answer-block">
+          <button class="toggle-answer" onclick="toggleAnswer(this)">Afficher la correction</button>
+          <div class="answer">
+            <div class="answer-label">Correction</div>
+            <p><strong>a)</strong> 1/4 + 1/3 + 1/6 = 3/12 + 4/12 + 2/12 = <strong>9/12 = 3/4</strong></p>
+            <p><strong>b)</strong> Il reste 1 - 3/4 = <strong>1/4</strong> du gâteau.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </details>
+
+</details>
+
+<!-- ═══════════════════════════════════════════════════════════
+     CHAPITRE 2 — PUISSANCES
+═══════════════════════════════════════════════════════════ -->
+<details class="chapter">
+  <summary><span class="chapter-tag">Chap. 2</span> Puissances et notation scientifique</summary>
+
+  <details class="section" open>
+    <summary>Cours &amp; rappels</summary>
+    <div class="section-content">
+      <div class="ref-links">
+        <span class="ref-label">Ressources en ligne</span>
+        <ul>
+          <li><a href="https://www.maths-et-tiques.fr/index.php/cours-maths/quatrieme" target="_blank" rel="noopener">Maths et Tiques — Puissances (4ème)</a></li>
+          <li><a href="https://fr.khanacademy.org/math/pre-algebra/pre-algebra-exponents-radicals" target="_blank" rel="noopener">Khan Academy — Exposants et puissances</a></li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <h4>Définition</h4>
+        <div class="formula">a<sup>n</sup> = a × a × a × … × a <em>(n facteurs)</em></div>
+        <p><strong>Exemples :</strong> 2<sup>4</sup> = 2 × 2 × 2 × 2 = 16 &nbsp;·&nbsp; 3<sup>3</sup> = 27 &nbsp;·&nbsp; 10<sup>5</sup> = 100 000</p>
+        <div class="formula">a<sup>0</sup> = 1 (pour tout a ≠ 0)</div>
+        <div class="formula">a<sup>−n</sup> = 1 / a<sup>n</sup></div>
+        <p><strong>Exemple :</strong> 2<sup>−3</sup> = 1/2<sup>3</sup> = 1/8</p>
+      </div>
+
+      <div class="block">
+        <h4>Règles de calcul</h4>
+        <div class="formula-group">
+          <div class="formula-title">Produit de puissances de même base</div>
+          <div class="formula">a<sup>m</sup> × a<sup>n</sup> = a<sup>m + n</sup></div>
+        </div>
+        <div class="formula-group">
+          <div class="formula-title">Quotient de puissances de même base</div>
+          <div class="formula">a<sup>m</sup> ÷ a<sup>n</sup> = a<sup>m − n</sup></div>
+        </div>
+        <div class="formula-group">
+          <div class="formula-title">Puissance d'une puissance</div>
+          <div class="formula">(a<sup>m</sup>)<sup>n</sup> = a<sup>m × n</sup></div>
+        </div>
+        <div class="formula-group">
+          <div class="formula-title">Puissance d'un produit</div>
+          <div class="formula">(a × b)<sup>n</sup> = a<sup>n</sup> × b<sup>n</sup></div>
+        </div>
+      </div>
+
+      <div class="block">
+        <h4>Notation scientifique</h4>
+        <p>Tout nombre se écrit sous la forme <strong>a × 10<sup>n</sup></strong> où <strong>1 ≤ a &lt; 10</strong> et n est un entier.</p>
+        <p><strong>Exemples :</strong></p>
+        <ul>
+          <li>45 000 = 4,5 × 10<sup>4</sup></li>
+          <li>0,0032 = 3,2 × 10<sup>−3</sup></li>
+          <li>186 000 000 = 1,86 × 10<sup>8</sup></li>
+        </ul>
+        <div class="tip">Pour passer en notation scientifique : déplace la virgule jusqu'à avoir un chiffre entre 1 et 9 avant la virgule. Le nombre de déplacements (et leur sens) donne l'exposant de 10.</div>
+      </div>
+    </div>
+  </details>
+
+  <details class="section">
+    <summary>Exercices de base</summary>
+    <div class="section-content">
+
+      <div class="block">
+        <h4>Exercice 1 — Calcul de puissances</h4>
+        <div class="ex-row"><span class="ex-num">1</span> 2<sup>5</sup> = <input type="text" class="user-input" data-key="c2-b1-1" placeholder="…"></div>
+        <div class="ex-row"><span class="ex-num">2</span> 3<sup>4</sup> = <input type="text" class="user-input" data-key="c2-b1-2" placeholder="…"></div>
+        <div class="ex-row"><span class="ex-num">3</span> 10<sup>6</sup> = <input type="text" class="user-input" data-key="c2-b1-3" placeholder="…"></div>
+        <div class="ex-row"><span class="ex-num">4</span> (−2)<sup>3</sup> = <input type="text" class="user-input" data-key="c2-b1-4" placeholder="…"></div>
+        <div class="ex-row"><span class="ex-num">5</span> 5<sup>0</sup> = <input type="text" class="user-input" data-key="c2-b1-5" placeholder="…"></div>
+        <div class="ex-row"><span class="ex-num">6</span> 4<sup>−2</sup> = <input type="text" class="user-input" data-key="c2-b1-6" placeholder="…"></div>
+        <div class="answer-block">
+          <button class="toggle-answer" onclick="toggleAnswer(this)">Afficher la correction</button>
+          <div class="answer">
+            <div class="answer-label">Correction</div>
+            <ol>
+              <li>2<sup>5</sup> = 2 × 2 × 2 × 2 × 2 = <strong>32</strong></li>
+              <li>3<sup>4</sup> = 81</li>
+              <li>10<sup>6</sup> = <strong>1 000 000</strong></li>
+              <li>(−2)<sup>3</sup> = −8 (produit de 3 négatifs = négatif)</li>
+              <li>5<sup>0</sup> = <strong>1</strong></li>
+              <li>4<sup>−2</sup> = 1/4<sup>2</sup> = <strong>1/16</strong></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <div class="block">
+        <h4>Exercice 2 — Règles de calcul</h4>
+        <p>Simplifie en utilisant les règles (donne le résultat sous la forme a<sup>n</sup>) :</p>
+        <div class="ex-row"><span class="ex-num">1</span> 3<sup>2</sup> × 3<sup>4</sup> = <input type="text" class="user-input" data-key="c2-b2-1" placeholder="3^?"></div>
+        <div class="ex-row"><span class="ex-num">2</span> 5<sup>6</sup> ÷ 5<sup>2</sup> = <input type="text" class="user-input" data-key="c2-b2-2" placeholder="5^?"></div>
+        <div class="ex-row"><span class="ex-num">3</span> (2<sup>3</sup>)<sup>2</sup> = <input type="text" class="user-input" data-key="c2-b2-3" placeholder="2^?"></div>
+        <div class="ex-row"><span class="ex-num">4</span> 10<sup>4</sup> × 10<sup>−2</sup> = <input type="text" class="user-input" data-key="c2-b2-4" placeholder="10^?"></div>
+        <div class="answer-block">
+          <button class="toggle-answer" onclick="toggleAnswer(this)">Afficher la correction</button>
+          <div class="answer">
+            <div class="answer-label">Correction</div>
+            <ol>
+              <li>3<sup>2</sup> × 3<sup>4</sup> = 3<sup>2+4</sup> = <strong>3<sup>6</sup> = 729</strong></li>
+              <li>5<sup>6</sup> ÷ 5<sup>2</sup> = 5<sup>6−2</sup> = <strong>5<sup>4</sup> = 625</strong></li>
+              <li>(2<sup>3</sup>)<sup>2</sup> = 2<sup>3×2</sup> = <strong>2<sup>6</sup> = 64</strong></li>
+              <li>10<sup>4</sup> × 10<sup>−2</sup> = 10<sup>4+(−2)</sup> = <strong>10<sup>2</sup> = 100</strong></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <div class="block">
+        <h4>Exercice 3 — Notation scientifique</h4>
+        <p>Écris en notation scientifique :</p>
+        <div class="ex-row"><span class="ex-num">1</span> 3 700 = <input type="text" class="user-input wide" data-key="c2-b3-1" placeholder="… × 10^…"></div>
+        <div class="ex-row"><span class="ex-num">2</span> 56 000 000 = <input type="text" class="user-input wide" data-key="c2-b3-2" placeholder="… × 10^…"></div>
+        <div class="ex-row"><span class="ex-num">3</span> 0,045 = <input type="text" class="user-input wide" data-key="c2-b3-3" placeholder="… × 10^…"></div>
+        <div class="ex-row"><span class="ex-num">4</span> 0,000 8 = <input type="text" class="user-input wide" data-key="c2-b3-4" placeholder="… × 10^…"></div>
+        <div class="answer-block">
+          <button class="toggle-answer" onclick="toggleAnswer(this)">Afficher la correction</button>
+          <div class="answer">
+            <div class="answer-label">Correction</div>
+            <ol>
+              <li>3 700 = <strong>3,7 × 10<sup>3</sup></strong></li>
+              <li>56 000 000 = <strong>5,6 × 10<sup>7</sup></strong></li>
+              <li>0,045 = <strong>4,5 × 10<sup>−2</sup></strong></li>
+              <li>0,000 8 = <strong>8 × 10<sup>−4</sup></strong></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </details>
+
+</details>
+
+<!-- ═══════════════════════════════════════════════════════════
+     CHAPITRE 3 — CALCUL LITTÉRAL & ÉQUATIONS
+═══════════════════════════════════════════════════════════ -->
+<details class="chapter">
+  <summary><span class="chapter-tag">Chap. 3</span> Calcul littéral et équations du 1<sup>er</sup> degré</summary>
+
+  <details class="section" open>
+    <summary>Cours &amp; rappels</summary>
+    <div class="section-content">
+      <div class="ref-links">
+        <span class="ref-label">Ressources en ligne</span>
+        <ul>
+          <li><a href="https://fr.khanacademy.org/math/algebra/introduction-to-algebra" target="_blank" rel="noopener">Khan Academy — Introduction à l'algèbre</a></li>
+          <li><a href="https://www.maths-et-tiques.fr/index.php/cours-maths/quatrieme" target="_blank" rel="noopener">Maths et Tiques — Calcul littéral 4ème</a></li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <h4>Développer une expression</h4>
+        <div class="formula">k(a + b) = ka + kb</div>
+        <div class="formula">k(a − b) = ka − kb</div>
+        <p><strong>Exemples :</strong><br>
+          3(x + 5) = 3x + 15<br>
+          −2(4 − x) = −8 + 2x = 2x − 8</p>
+      </div>
+
+      <div class="block">
+        <h4>Identités remarquables</h4>
+        <div class="formula-group">
+          <div class="formula-title">Carré d'une somme</div>
+          <div class="formula">(a + b)<sup>2</sup> = a<sup>2</sup> + 2ab + b<sup>2</sup></div>
+        </div>
+        <div class="formula-group">
+          <div class="formula-title">Carré d'une différence</div>
+          <div class="formula">(a − b)<sup>2</sup> = a<sup>2</sup> − 2ab + b<sup>2</sup></div>
+        </div>
+        <div class="formula-group">
+          <div class="formula-title">Produit de la somme et de la différence</div>
+          <div class="formula">(a + b)(a − b) = a<sup>2</sup> − b<sup>2</sup></div>
+        </div>
+      </div>
+
+      <div class="block">
+        <h4>Factoriser une expression</h4>
+        <p>C'est l'opération inverse : on met en évidence un facteur commun.</p>
+        <div class="formula">ab + ac = a(b + c)</div>
+        <p><strong>Exemple :</strong> 6x + 15 = 3(2x + 5)</p>
+      </div>
+
+      <div class="block">
+        <h4>Résoudre une équation du 1<sup>er</sup> degré</h4>
+        <p>Le but est d'<strong>isoler l'inconnue x</strong> en effectuant les mêmes opérations des deux côtés de l'égalité.</p>
+        <div class="tip">On peut : additionner, soustraire, multiplier ou diviser les deux membres par le même nombre (≠ 0).</div>
+        <p><strong>Exemple :</strong> 3x − 5 = 10<br>
+          → 3x = 10 + 5 = 15<br>
+          → x = 15 ÷ 3 = 5<br>
+          <em>Vérification : 3 × 5 − 5 = 10 ✓</em></p>
+      </div>
+    </div>
+  </details>
+
+  <details class="section">
+    <summary>Exercices — Développer et factoriser</summary>
+    <div class="section-content">
+
+      <div class="block">
+        <h4>Exercice 1 — Développer</h4>
+        <p>Développe et réduis :</p>
+        <div class="ex-row"><span class="ex-num">1</span> 4(x + 3) = <input type="text" class="user-input wide" data-key="c3-dev1" placeholder="…"></div>
+        <div class="ex-row"><span class="ex-num">2</span> −3(2x − 5) = <input type="text" class="user-input wide" data-key="c3-dev2" placeholder="…"></div>
+        <div class="ex-row"><span class="ex-num">3</span> 2(x + 1) + 3(x − 4) = <input type="text" class="user-input wide" data-key="c3-dev3" placeholder="…"></div>
+        <div class="ex-row"><span class="ex-num">4</span> (x + 3)<sup>2</sup> = <input type="text" class="user-input wide" data-key="c3-dev4" placeholder="…"></div>
+        <div class="ex-row"><span class="ex-num">5</span> (2x + 1)(2x − 1) = <input type="text" class="user-input wide" data-key="c3-dev5" placeholder="…"></div>
+        <div class="answer-block">
+          <button class="toggle-answer" onclick="toggleAnswer(this)">Afficher la correction</button>
+          <div class="answer">
+            <div class="answer-label">Correction</div>
+            <ol>
+              <li>4(x + 3) = <strong>4x + 12</strong></li>
+              <li>−3(2x − 5) = <strong>−6x + 15</strong></li>
+              <li>2x + 2 + 3x − 12 = <strong>5x − 10</strong></li>
+              <li>(x + 3)<sup>2</sup> = x<sup>2</sup> + 2×x×3 + 9 = <strong>x<sup>2</sup> + 6x + 9</strong></li>
+              <li>(2x)<sup>2</sup> − 1<sup>2</sup> = <strong>4x<sup>2</sup> − 1</strong></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <div class="block">
+        <h4>Exercice 2 — Factoriser</h4>
+        <div class="ex-row"><span class="ex-num">1</span> 6x + 9 = <input type="text" class="user-input wide" data-key="c3-fac1" placeholder="…(…)"></div>
+        <div class="ex-row"><span class="ex-num">2</span> 10x − 15 = <input type="text" class="user-input wide" data-key="c3-fac2" placeholder="…(…)"></div>
+        <div class="ex-row"><span class="ex-num">3</span> 4x<sup>2</sup> + 8x = <input type="text" class="user-input wide" data-key="c3-fac3" placeholder="…(…)"></div>
+        <div class="answer-block">
+          <button class="toggle-answer" onclick="toggleAnswer(this)">Afficher la correction</button>
+          <div class="answer">
+            <div class="answer-label">Correction</div>
+            <ol>
+              <li>6x + 9 = <strong>3(2x + 3)</strong></li>
+              <li>10x − 15 = <strong>5(2x − 3)</strong></li>
+              <li>4x<sup>2</sup> + 8x = <strong>4x(x + 2)</strong></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </details>
+
+  <details class="section">
+    <summary>Exercices — Équations</summary>
+    <div class="section-content">
+
+      <div class="block">
+        <h4>Exercice 3 — Équations simples</h4>
+        <p>Résous les équations :</p>
+        <div class="ex-row"><span class="ex-num">1</span> x + 8 = 17 &nbsp;→&nbsp; x = <input type="text" class="user-input" data-key="c3-eq1" placeholder="…"></div>
+        <div class="ex-row"><span class="ex-num">2</span> 5x = 35 &nbsp;→&nbsp; x = <input type="text" class="user-input" data-key="c3-eq2" placeholder="…"></div>
+        <div class="ex-row"><span class="ex-num">3</span> 3x − 4 = 11 &nbsp;→&nbsp; x = <input type="text" class="user-input" data-key="c3-eq3" placeholder="…"></div>
+        <div class="ex-row"><span class="ex-num">4</span> 4x + 7 = 2x + 15 &nbsp;→&nbsp; x = <input type="text" class="user-input" data-key="c3-eq4" placeholder="…"></div>
+        <div class="ex-row"><span class="ex-num">5</span> 2(x − 3) = x + 5 &nbsp;→&nbsp; x = <input type="text" class="user-input" data-key="c3-eq5" placeholder="…"></div>
+        <div class="answer-block">
+          <button class="toggle-answer" onclick="toggleAnswer(this)">Afficher la correction</button>
+          <div class="answer">
+            <div class="answer-label">Correction</div>
+            <ol>
+              <li>x = 17 − 8 = <strong>9</strong></li>
+              <li>x = 35 ÷ 5 = <strong>7</strong></li>
+              <li>3x = 11 + 4 = 15 → x = <strong>5</strong></li>
+              <li>4x − 2x = 15 − 7 → 2x = 8 → x = <strong>4</strong></li>
+              <li>2x − 6 = x + 5 → 2x − x = 5 + 6 → x = <strong>11</strong></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <div class="block">
+        <h4>Problème — Mise en équation</h4>
+        <p>Je pense à un nombre. Je lui ajoute 7, puis je multiplie le résultat par 4. J'obtiens 52. Quel est ce nombre ?</p>
+        <label class="field-label">Pose l'équation et résous</label>
+        <textarea class="user-textarea" data-key="c3-pb1" placeholder="Appelle le nombre x. Écris l'équation : …"></textarea>
+        <div class="answer-block">
+          <button class="toggle-answer" onclick="toggleAnswer(this)">Afficher la correction</button>
+          <div class="answer">
+            <div class="answer-label">Correction</div>
+            <p>On appelle le nombre <strong>x</strong>.</p>
+            <p>Équation : 4(x + 7) = 52</p>
+            <p>→ x + 7 = 52 ÷ 4 = 13</p>
+            <p>→ x = 13 − 7 = <strong>6</strong></p>
+            <p><em>Vérification : 4 × (6 + 7) = 4 × 13 = 52 ✓</em></p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </details>
+
+</details>
+
+<!-- ═══════════════════════════════════════════════════════════
+     CHAPITRE 4 — PROPORTIONNALITÉ
+═══════════════════════════════════════════════════════════ -->
+<details class="chapter">
+  <summary><span class="chapter-tag">Chap. 4</span> Proportionnalité, pourcentages et vitesse</summary>
+
+  <details class="section" open>
+    <summary>Cours &amp; rappels</summary>
+    <div class="section-content">
+      <div class="block">
+        <h4>Proportionnalité</h4>
+        <p>Deux grandeurs sont proportionnelles quand leurs quotients sont tous égaux (coefficient de proportionnalité k).</p>
+        <div class="formula">y = k × x</div>
+        <p>On peut utiliser le <strong>produit en croix</strong> : si a/b = c/d alors a × d = b × c</p>
+      </div>
+
+      <div class="block">
+        <h4>Pourcentages</h4>
+        <div class="formula-group">
+          <div class="formula-title">p % de a</div>
+          <div class="formula">(p / 100) × a</div>
+        </div>
+        <div class="formula-group">
+          <div class="formula-title">Augmentation de p %</div>
+          <div class="formula">Nouvelle valeur = ancienne × (1 + p/100)</div>
+        </div>
+        <div class="formula-group">
+          <div class="formula-title">Réduction de p %</div>
+          <div class="formula">Nouvelle valeur = ancienne × (1 − p/100)</div>
+        </div>
+      </div>
+
+      <div class="block">
+        <h4>Vitesse — distance — durée</h4>
+        <div class="formula-group">
+          <div class="formula-title">Formules fondamentales</div>
+          <div class="formula">v = d / t &nbsp;&nbsp; d = v × t &nbsp;&nbsp; t = d / v</div>
+        </div>
+        <div class="tip">Unités : v en km/h, d en km, t en h (ou v en m/s, d en m, t en s)</div>
+      </div>
+    </div>
+  </details>
+
+  <details class="section">
+    <summary>Exercices — Proportionnalité et pourcentages</summary>
+    <div class="section-content">
+
+      <div class="block">
+        <h4>Exercice 1 — Tableaux de proportionnalité</h4>
+        <p>Complète le tableau de proportionnalité :</p>
+        <table class="data-table">
+          <tr><th>Nombre de livres</th><td>2</td><td>5</td><td>?</td><td>12</td></tr>
+          <tr><th>Prix (€)</th><td>7</td><td>?</td><td>21</td><td>?</td></tr>
+        </table>
+        <label class="field-label">Valeurs manquantes (dans l'ordre)</label>
+        <input type="text" class="user-input wide" data-key="c4-tab1" placeholder="Prix pour 5, nb pour 21€, prix pour 12">
+        <div class="answer-block">
+          <button class="toggle-answer" onclick="toggleAnswer(this)">Afficher la correction</button>
+          <div class="answer">
+            <div class="answer-label">Correction</div>
+            <p>Coefficient : k = 7/2 = 3,5</p>
+            <ul>
+              <li>Prix pour 5 livres : 5 × 3,5 = <strong>17,50 €</strong></li>
+              <li>Nombre de livres pour 21 € : 21 / 3,5 = <strong>6 livres</strong></li>
+              <li>Prix pour 12 livres : 12 × 3,5 = <strong>42 €</strong></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="block">
+        <h4>Exercice 2 — Pourcentages</h4>
+        <div class="ex-row"><span class="ex-num">1</span> 20 % de 150 € = <input type="text" class="user-input" data-key="c4-pct1" placeholder="…"> €</div>
+        <div class="ex-row"><span class="ex-num">2</span> Un article à 80 € est soldé à −25 %. Prix final = <input type="text" class="user-input" data-key="c4-pct2" placeholder="…"> €</div>
+        <div class="ex-row"><span class="ex-num">3</span> Un salaire de 1 600 € augmente de 5 %. Nouveau salaire = <input type="text" class="user-input" data-key="c4-pct3" placeholder="…"> €</div>
+        <div class="ex-row"><span class="ex-num">4</span> Un vêtement passe de 60 € à 45 €. Taux de réduction = <input type="text" class="user-input" data-key="c4-pct4" placeholder="…"> %</div>
+        <div class="answer-block">
+          <button class="toggle-answer" onclick="toggleAnswer(this)">Afficher la correction</button>
+          <div class="answer">
+            <div class="answer-label">Correction</div>
+            <ol>
+              <li>20/100 × 150 = <strong>30 €</strong></li>
+              <li>80 × (1 − 25/100) = 80 × 0,75 = <strong>60 €</strong></li>
+              <li>1 600 × (1 + 5/100) = 1 600 × 1,05 = <strong>1 680 €</strong></li>
+              <li>Réduction = 60 − 45 = 15 € → taux = (15/60) × 100 = <strong>25 %</strong></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <div class="block">
+        <h4>Exercice 3 — Vitesse, distance, durée</h4>
+        <div class="ex-row"><span class="ex-num">1</span> Un train roule à 160 km/h pendant 2 h 30 min. Distance = <input type="text" class="user-input" data-key="c4-vit1" placeholder="…"> km</div>
+        <div class="ex-row"><span class="ex-num">2</span> Une voiture parcourt 360 km en 4 h. Vitesse = <input type="text" class="user-input" data-key="c4-vit2" placeholder="…"> km/h</div>
+        <div class="ex-row"><span class="ex-num">3</span> Un cycliste roule à 20 km/h et doit parcourir 50 km. Durée = <input type="text" class="user-input" data-key="c4-vit3" placeholder="…"> h</div>
+        <div class="answer-block">
+          <button class="toggle-answer" onclick="toggleAnswer(this)">Afficher la correction</button>
+          <div class="answer">
+            <div class="answer-label">Correction</div>
+            <ol>
+              <li>t = 2,5 h → d = 160 × 2,5 = <strong>400 km</strong></li>
+              <li>v = 360 / 4 = <strong>90 km/h</strong></li>
+              <li>t = 50 / 20 = <strong>2,5 h = 2 h 30 min</strong></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </details>
+
+</details>
+
+<!-- ═══════════════════════════════════════════════════════════
+     CHAPITRE 5 — THÉORÈME DE PYTHAGORE
+═══════════════════════════════════════════════════════════ -->
+<details class="chapter">
+  <summary><span class="chapter-tag">Chap. 5</span> Théorème de Pythagore</summary>
+
+  <details class="section" open>
+    <summary>Cours &amp; rappels</summary>
+    <div class="section-content">
+      <div class="ref-links">
+        <span class="ref-label">Ressources en ligne</span>
+        <ul>
+          <li><a href="https://fr.khanacademy.org/math/geometry/hs-geo-trig/hs-geo-pyth-theorem/a/pythagorean-theorem-review" target="_blank" rel="noopener">Khan Academy — Théorème de Pythagore</a></li>
+          <li><a href="https://www.maths-et-tiques.fr/index.php/cours-maths/quatrieme" target="_blank" rel="noopener">Maths et Tiques — Pythagore 4ème</a></li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <h4>Théorème de Pythagore</h4>
+        <blockquote>Dans un triangle rectangle en C, le carré de l'hypoténuse est égal à la somme des carrés des deux autres côtés (cathètes).</blockquote>
+        <div class="formula">BC² = AB² + AC² &nbsp; (AB = hypoténuse, angle droit en A)</div>
+        <p>Plus généralement, si le triangle est rectangle en C, l'hypoténuse est le côté opposé à l'angle droit (le plus grand côté).</p>
+        <div class="formula">hypoténuse² = côté₁² + côté₂²</div>
+        <div class="tip">L'hypoténuse est toujours le côté en face de l'angle droit. C'est le plus grand des trois côtés.</div>
+      </div>
+
+      <div class="block">
+        <h4>Réciproque du théorème de Pythagore</h4>
+        <blockquote>Si dans un triangle, le carré du plus grand côté est égal à la somme des carrés des deux autres, alors ce triangle est rectangle (et l'angle droit est en face du plus grand côté).</blockquote>
+        <p>Cela sert à <strong>vérifier si un triangle est rectangle</strong>.</p>
+      </div>
+
+      <div class="block">
+        <h4>Triples pythagoriciens à connaître</h4>
+        <ul>
+          <li>(3, 4, 5) : 3² + 4² = 9 + 16 = 25 = 5²</li>
+          <li>(5, 12, 13) : 5² + 12² = 25 + 144 = 169 = 13²</li>
+          <li>(8, 15, 17) : 8² + 15² = 64 + 225 = 289 = 17²</li>
+        </ul>
+      </div>
+    </div>
+  </details>
+
+  <details class="section">
+    <summary>Exercices</summary>
+    <div class="section-content">
+
+      <div class="block">
+        <h4>Exercice 1 — Calculer une longueur</h4>
+        <p>Dans chaque triangle rectangle, calcule la longueur manquante (arrondi au centième si nécessaire) :</p>
+        <div class="ex-row"><span class="ex-num">1</span> Cathètes 6 et 8 cm → hypoténuse = <input type="text" class="user-input" data-key="c5-py1" placeholder="… cm"></div>
+        <div class="ex-row"><span class="ex-num">2</span> Hypoténuse 13 cm, cathète 5 cm → autre cathète = <input type="text" class="user-input" data-key="c5-py2" placeholder="… cm"></div>
+        <div class="ex-row"><span class="ex-num">3</span> Cathètes 7 et 9 cm → hypoténuse ≈ <input type="text" class="user-input" data-key="c5-py3" placeholder="… cm"></div>
+        <div class="ex-row"><span class="ex-num">4</span> Hypoténuse 10 cm, cathète 6 cm → autre cathète = <input type="text" class="user-input" data-key="c5-py4" placeholder="… cm"></div>
+        <div class="answer-block">
+          <button class="toggle-answer" onclick="toggleAnswer(this)">Afficher la correction</button>
+          <div class="answer">
+            <div class="answer-label">Correction</div>
+            <ol>
+              <li>c² = 6² + 8² = 36 + 64 = 100 → c = √100 = <strong>10 cm</strong></li>
+              <li>a² = 13² − 5² = 169 − 25 = 144 → a = √144 = <strong>12 cm</strong></li>
+              <li>c² = 7² + 9² = 49 + 81 = 130 → c = √130 ≈ <strong>11,40 cm</strong></li>
+              <li>b² = 10² − 6² = 100 − 36 = 64 → b = √64 = <strong>8 cm</strong></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <div class="block">
+        <h4>Exercice 2 — Réciproque</h4>
+        <p>Ces triangles sont-ils rectangles ? Justifie.</p>
+        <div class="ex-row"><span class="ex-num">1</span> Côtés 9, 12, 15 cm → Rectangle ? <input type="text" class="user-input wide" data-key="c5-rec1" placeholder="Oui / Non — car …"></div>
+        <div class="ex-row"><span class="ex-num">2</span> Côtés 5, 7, 9 cm → Rectangle ? <input type="text" class="user-input wide" data-key="c5-rec2" placeholder="Oui / Non — car …"></div>
+        <div class="ex-row"><span class="ex-num">3</span> Côtés 8, 15, 17 cm → Rectangle ? <input type="text" class="user-input wide" data-key="c5-rec3" placeholder="Oui / Non — car …"></div>
+        <div class="answer-block">
+          <button class="toggle-answer" onclick="toggleAnswer(this)">Afficher la correction</button>
+          <div class="answer">
+            <div class="answer-label">Correction</div>
+            <ol>
+              <li>9² + 12² = 81 + 144 = 225 = 15² → <strong>OUI, rectangle</strong> (angle droit en face de 15 cm)</li>
+              <li>5² + 7² = 25 + 49 = 74 ≠ 81 = 9² → <strong>NON, pas rectangle</strong></li>
+              <li>8² + 15² = 64 + 225 = 289 = 17² → <strong>OUI, rectangle</strong> (angle droit en face de 17 cm)</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <div class="block">
+        <h4>Problème — Hauteur d'un mât</h4>
+        <p>Un mât vertical est planté dans le sol. Un câble de soutien part du sommet du mât et est fixé au sol à 8 m du pied du mât. Le câble mesure 10 m. Quelle est la hauteur du mât ?</p>
+        <label class="field-label">Ta résolution</label>
+        <textarea class="user-textarea" data-key="c5-pb1" placeholder="Fais un schéma, identifie le triangle rectangle, applique Pythagore…"></textarea>
+        <div class="answer-block">
+          <button class="toggle-answer" onclick="toggleAnswer(this)">Afficher la correction</button>
+          <div class="answer">
+            <div class="answer-label">Correction</div>
+            <p>Le triangle est rectangle (angle droit au pied du mât).</p>
+            <p>Hypoténuse = câble = 10 m, cathète = distance au sol = 8 m</p>
+            <p>hauteur² = 10² − 8² = 100 − 64 = 36</p>
+            <p>hauteur = √36 = <strong>6 m</strong></p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </details>
+
+</details>
+
+<!-- ═══════════════════════════════════════════════════════════
+     CHAPITRE 6 — THÉORÈME DE THALÈS
+═══════════════════════════════════════════════════════════ -->
+<details class="chapter">
+  <summary><span class="chapter-tag">Chap. 6</span> Théorème de Thalès</summary>
+
+  <details class="section" open>
+    <summary>Cours &amp; rappels</summary>
+    <div class="section-content">
+      <div class="ref-links">
+        <span class="ref-label">Ressources en ligne</span>
+        <ul>
+          <li><a href="https://www.maths-et-tiques.fr/index.php/cours-maths/quatrieme" target="_blank" rel="noopener">Maths et Tiques — Théorème de Thalès</a></li>
+          <li><a href="https://fr.khanacademy.org/math/geometry" target="_blank" rel="noopener">Khan Academy — Géométrie</a></li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <h4>Configuration de Thalès (dans un triangle)</h4>
+        <blockquote>Dans un triangle ABC, si la droite (MN) est parallèle à (BC), avec M sur [AB] et N sur [AC], alors :</blockquote>
+        <div class="formula">AM / AB = AN / AC = MN / BC</div>
+        <p>Ces trois rapports sont égaux au <strong>coefficient de réduction/agrandissement</strong>.</p>
+        <div class="tip">Pour trouver une longueur inconnue, on pose l'égalité des deux rapports qui contiennent l'inconnue, puis on résout par produit en croix.</div>
+      </div>
+
+      <div class="block">
+        <h4>Configuration de Thalès (droites sécantes)</h4>
+        <blockquote>Deux droites sécantes en O sont coupées par deux droites parallèles en A, B et A', B' respectivement.</blockquote>
+        <div class="formula">OA / OA' = OB / OB' = AB / A'B'</div>
+      </div>
+    </div>
+  </details>
+
+  <details class="section">
+    <summary>Exercices</summary>
+    <div class="section-content">
+
+      <div class="block">
+        <h4>Exercice 1 — Calcul de longueurs</h4>
+        <p>Dans le triangle ABC, MN // BC avec M sur [AB] et N sur [AC].</p>
+        <div class="ex-row"><span class="ex-num">1</span> AM = 4 cm, AB = 10 cm, AC = 15 cm. AN = <input type="text" class="user-input" data-key="c6-th1" placeholder="… cm"></div>
+        <div class="ex-row"><span class="ex-num">2</span> AM = 3 cm, MB = 5 cm, AN = 2,4 cm. NC = <input type="text" class="user-input" data-key="c6-th2" placeholder="… cm"></div>
+        <div class="ex-row"><span class="ex-num">3</span> AB = 12 cm, AM = 9 cm, BC = 8 cm. MN = <input type="text" class="user-input" data-key="c6-th3" placeholder="… cm"></div>
+        <div class="answer-block">
+          <button class="toggle-answer" onclick="toggleAnswer(this)">Afficher la correction</button>
+          <div class="answer">
+            <div class="answer-label">Correction</div>
+            <ol>
+              <li>AM/AB = AN/AC → 4/10 = AN/15 → AN = (4 × 15) / 10 = <strong>6 cm</strong></li>
+              <li>AB = AM + MB = 3 + 5 = 8 ; AM/AB = AN/AC → 3/8 = 2,4/AC → AC = (2,4 × 8)/3 = 6,4 ; NC = AC − AN = 6,4 − 2,4 = <strong>4 cm</strong></li>
+              <li>AM/AB = MN/BC → 9/12 = MN/8 → MN = (9 × 8)/12 = <strong>6 cm</strong></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <div class="block">
+        <h4>Problème — Arbre et ombre</h4>
+        <p>Par un jour ensoleillé, un arbre de 8 m projette une ombre de 10 m. À côté, un poteau projette une ombre de 4 m. Quelle est la hauteur du poteau ?</p>
+        <label class="field-label">Ta résolution (utilise Thalès)</label>
+        <textarea class="user-textarea" data-key="c6-pb1" placeholder="Les rayons solaires sont parallèles, donc on peut appliquer Thalès…"></textarea>
+        <div class="answer-block">
+          <button class="toggle-answer" onclick="toggleAnswer(this)">Afficher la correction</button>
+          <div class="answer">
+            <div class="answer-label">Correction</div>
+            <p>Les rayons du soleil sont parallèles : on a deux triangles semblables.</p>
+            <p>hauteur arbre / ombre arbre = hauteur poteau / ombre poteau</p>
+            <p>8 / 10 = h / 4 → h = (8 × 4) / 10 = 32/10 = <strong>3,2 m</strong></p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </details>
+
+</details>
+
+<!-- ═══════════════════════════════════════════════════════════
+     CHAPITRE 7 — TRANSFORMATIONS
+═══════════════════════════════════════════════════════════ -->
+<details class="chapter">
+  <summary><span class="chapter-tag">Chap. 7</span> Transformations géométriques</summary>
+
+  <details class="section" open>
+    <summary>Cours &amp; rappels</summary>
+    <div class="section-content">
+
+      <div class="block">
+        <h4>Symétrie axiale</h4>
+        <p>La symétrie axiale (d'axe d) transforme chaque point M en son symétrique M' tel que :</p>
+        <ul>
+          <li>la droite d est la <strong>médiatrice</strong> du segment [MM']</li>
+          <li>M et M' sont à <strong>égale distance</strong> de d</li>
+          <li>le segment [MM'] est <strong>perpendiculaire</strong> à d</li>
+        </ul>
+        <p><em>Conserve les longueurs, les angles et les aires. La figure et son image sont superposables.</em></p>
+      </div>
+
+      <div class="block">
+        <h4>Symétrie centrale</h4>
+        <p>La symétrie centrale (de centre O) transforme chaque point M en M' tel que O est le <strong>milieu de [MM']</strong>.</p>
+        <p>C'est équivalent à une rotation de 180° autour de O.</p>
+        <p><em>Conserve les longueurs, les angles et les aires.</em></p>
+      </div>
+
+      <div class="block">
+        <h4>Translation</h4>
+        <p>Une translation de vecteur <strong>u</strong> déplace chaque point M d'une même direction, un même sens et une même distance.</p>
+        <div class="formula">MM' = u (même direction, même sens, même longueur)</div>
+        <p><em>Conserve les longueurs, les angles, les aires et les directions.</em></p>
+      </div>
+
+      <div class="block">
+        <h4>Rotation</h4>
+        <p>Une rotation de centre O et d'angle α transforme chaque point M en M' tel que :</p>
+        <ul>
+          <li>OM = OM' (même distance au centre)</li>
+          <li>L'angle (OM, OM') = α</li>
+        </ul>
+        <p><em>Conserve les longueurs, les angles et les aires.</em></p>
+      </div>
+
+    </div>
+  </details>
+
+  <details class="section">
+    <summary>Exercices</summary>
+    <div class="section-content">
+
+      <div class="block">
+        <h4>Exercice 1 — Questions de cours</h4>
+        <p>Réponds aux questions suivantes :</p>
+
+        <p><strong>1.</strong> Comment construis-tu le symétrique d'un point M par rapport à une droite d ?</p>
+        <label class="field-label">Ta réponse</label>
+        <textarea class="user-textarea" style="min-height:55px" data-key="c7-q1" placeholder="Je trace la perpendiculaire à d passant par M…"></textarea>
+        <div class="answer-block">
+          <button class="toggle-answer" onclick="toggleAnswer(this)">Afficher la correction</button>
+          <div class="answer">
+            <div class="answer-label">Correction</div>
+            <p>On trace la perpendiculaire à (d) passant par M. On mesure la distance de M à (d), et on reporte cette même distance de l'autre côté de (d). Le point obtenu est M'.</p>
+          </div>
+        </div>
+
+        <p style="margin-top:1rem;"><strong>2.</strong> Le centre de symétrie O d'un segment [AB] se trouve en quel point ?</p>
+        <label class="field-label">Ta réponse</label>
+        <input type="text" class="user-input wide" data-key="c7-q2" placeholder="…">
+        <div class="answer-block">
+          <button class="toggle-answer" onclick="toggleAnswer(this)">Afficher la correction</button>
+          <div class="answer">
+            <div class="answer-label">Correction</div>
+            <p>O est le <strong>milieu du segment [AB]</strong>.</p>
+          </div>
+        </div>
+
+        <p style="margin-top:1rem;"><strong>3.</strong> Cite une propriété conservée par TOUTES les transformations étudiées.</p>
+        <label class="field-label">Ta réponse</label>
+        <input type="text" class="user-input wide" data-key="c7-q3" placeholder="…">
+        <div class="answer-block">
+          <button class="toggle-answer" onclick="toggleAnswer(this)">Afficher la correction</button>
+          <div class="answer">
+            <div class="answer-label">Correction</div>
+            <p>Les longueurs, les angles et les aires sont conservés par les symétries (axiale et centrale), les translations et les rotations. On parle d'<strong>isométries</strong>.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="block">
+        <h4>Exercice 2 — Identifier une transformation</h4>
+        <p>Pour chaque description, indique quelle transformation est utilisée :</p>
+        <div class="ex-row"><span class="ex-num">1</span> Un point et son image sont symétriques par rapport à un point O → <input type="text" class="user-input wide" data-key="c7-ident1" placeholder="Nom de la transformation"></div>
+        <div class="ex-row"><span class="ex-num">2</span> Un point glisse de 5 cm vers la droite → <input type="text" class="user-input wide" data-key="c7-ident2" placeholder="Nom de la transformation"></div>
+        <div class="ex-row"><span class="ex-num">3</span> Un point tourne de 90° autour d'un centre fixe → <input type="text" class="user-input wide" data-key="c7-ident3" placeholder="Nom de la transformation"></div>
+        <div class="answer-block">
+          <button class="toggle-answer" onclick="toggleAnswer(this)">Afficher la correction</button>
+          <div class="answer">
+            <div class="answer-label">Correction</div>
+            <ol>
+              <li><strong>Symétrie centrale</strong> (de centre O)</li>
+              <li><strong>Translation</strong></li>
+              <li><strong>Rotation</strong></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </details>
+
+</details>
+
+<!-- ═══════════════════════════════════════════════════════════
+     CHAPITRE 8 — STATISTIQUES & PROBABILITÉS
+═══════════════════════════════════════════════════════════ -->
+<details class="chapter">
+  <summary><span class="chapter-tag">Chap. 8</span> Statistiques et probabilités</summary>
+
+  <details class="section" open>
+    <summary>Cours &amp; rappels</summary>
+    <div class="section-content">
+      <div class="ref-links">
+        <span class="ref-label">Ressources en ligne</span>
+        <ul>
+          <li><a href="https://fr.khanacademy.org/math/statistics-probability" target="_blank" rel="noopener">Khan Academy — Statistiques et probabilités</a></li>
+          <li><a href="https://www.maths-et-tiques.fr/index.php/cours-maths/quatrieme" target="_blank" rel="noopener">Maths et Tiques — Probabilités 4ème</a></li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <h4>Probabilités</h4>
+        <p>Une <strong>expérience aléatoire</strong> a plusieurs issues possibles qu'on ne peut pas prévoir à l'avance.</p>
+        <div class="formula-group">
+          <div class="formula-title">Probabilité (situations d'équiprobabilité)</div>
+          <div class="formula">P(A) = nombre de cas favorables / nombre de cas possibles</div>
+        </div>
+        <p><strong>Propriétés :</strong></p>
+        <ul>
+          <li>0 ≤ P(A) ≤ 1 pour tout événement A</li>
+          <li>P(événement certain) = 1</li>
+          <li>P(événement impossible) = 0</li>
+          <li>P(contraire de A) = 1 − P(A)</li>
+        </ul>
+        <div class="tip">P(A) = 0,5 signifie que l'événement a 50% de chances de se réaliser. P(A) = 1/4 signifie 25% de chances.</div>
+      </div>
+
+      <div class="block">
+        <h4>Statistiques — Indicateurs</h4>
+        <div class="formula-group">
+          <div class="formula-title">Moyenne</div>
+          <div class="formula">x̄ = (somme de toutes les valeurs) / (nombre de valeurs)</div>
+        </div>
+        <div class="formula-group">
+          <div class="formula-title">Étendue</div>
+          <div class="formula">étendue = valeur maximale − valeur minimale</div>
+        </div>
+        <div class="formula-group">
+          <div class="formula-title">Médiane</div>
+          <div class="formula">Valeur qui partage la série ordonnée en deux moitiés égales</div>
+        </div>
+        <p><strong>Fréquence :</strong> fréquence de x = (nombre d'apparitions de x) / (nombre total de valeurs)</p>
+      </div>
+    </div>
+  </details>
+
+  <details class="section">
+    <summary>Exercices — Probabilités</summary>
+    <div class="section-content">
+
+      <div class="block">
+        <h4>Exercice 1 — Lancer de dé</h4>
+        <p>On lance un dé cubique équilibré (faces 1, 2, 3, 4, 5, 6). Calcule :</p>
+        <div class="ex-row"><span class="ex-num">1</span> P(obtenir 4) = <input type="text" class="user-input" data-key="c8-de1" placeholder="…"></div>
+        <div class="ex-row"><span class="ex-num">2</span> P(obtenir un nombre pair) = <input type="text" class="user-input" data-key="c8-de2" placeholder="…"></div>
+        <div class="ex-row"><span class="ex-num">3</span> P(obtenir un nombre ≥ 5) = <input type="text" class="user-input" data-key="c8-de3" placeholder="…"></div>
+        <div class="ex-row"><span class="ex-num">4</span> P(ne pas obtenir 6) = <input type="text" class="user-input" data-key="c8-de4" placeholder="…"></div>
+        <div class="answer-block">
+          <button class="toggle-answer" onclick="toggleAnswer(this)">Afficher la correction</button>
+          <div class="answer">
+            <div class="answer-label">Correction</div>
+            <ol>
+              <li>P(4) = 1/6</li>
+              <li>Nombres pairs : {2, 4, 6} → P(pair) = 3/6 = <strong>1/2</strong></li>
+              <li>Nombres ≥ 5 : {5, 6} → P(≥5) = 2/6 = <strong>1/3</strong></li>
+              <li>P(pas 6) = 1 − P(6) = 1 − 1/6 = <strong>5/6</strong></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <div class="block">
+        <h4>Exercice 2 — Tirage de carte</h4>
+        <p>On tire une carte au hasard dans un jeu de 32 cartes (8 valeurs × 4 couleurs). Calcule :</p>
+        <div class="ex-row"><span class="ex-num">1</span> P(tirer un as) = <input type="text" class="user-input" data-key="c8-carte1" placeholder="…"></div>
+        <div class="ex-row"><span class="ex-num">2</span> P(tirer un cœur) = <input type="text" class="user-input" data-key="c8-carte2" placeholder="…"></div>
+        <div class="ex-row"><span class="ex-num">3</span> P(tirer un roi ou une dame) = <input type="text" class="user-input" data-key="c8-carte3" placeholder="…"></div>
+        <div class="answer-block">
+          <button class="toggle-answer" onclick="toggleAnswer(this)">Afficher la correction</button>
+          <div class="answer">
+            <div class="answer-label">Correction</div>
+            <ol>
+              <li>4 as dans 32 cartes → P(as) = 4/32 = <strong>1/8</strong></li>
+              <li>8 cœurs dans 32 cartes → P(cœur) = 8/32 = <strong>1/4</strong></li>
+              <li>4 rois + 4 dames = 8 cartes → P(roi ou dame) = 8/32 = <strong>1/4</strong></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </details>
+
+  <details class="section">
+    <summary>Exercices — Statistiques</summary>
+    <div class="section-content">
+
+      <div class="block">
+        <h4>Exercice 3 — Calculs statistiques</h4>
+        <p>Les notes d'un élève en mathématiques ce trimestre : 12 · 15 · 8 · 17 · 10 · 14 · 9</p>
+        <div class="ex-row"><span class="ex-num">1</span> Moyenne = <input type="text" class="user-input" data-key="c8-st1" placeholder="…"></div>
+        <div class="ex-row"><span class="ex-num">2</span> Étendue = <input type="text" class="user-input" data-key="c8-st2" placeholder="…"></div>
+        <div class="ex-row"><span class="ex-num">3</span> Médiane = <input type="text" class="user-input" data-key="c8-st3" placeholder="…"></div>
+        <div class="answer-block">
+          <button class="toggle-answer" onclick="toggleAnswer(this)">Afficher la correction</button>
+          <div class="answer">
+            <div class="answer-label">Correction</div>
+            <p>Série ordonnée : 8 · 9 · 10 · <strong>12</strong> · 14 · 15 · 17</p>
+            <ol>
+              <li>Moyenne = (12+15+8+17+10+14+9) / 7 = 85 / 7 ≈ <strong>12,14</strong></li>
+              <li>Étendue = 17 − 8 = <strong>9</strong></li>
+              <li>7 valeurs → médiane = 4<sup>ème</sup> valeur = <strong>12</strong></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <div class="block">
+        <h4>Exercice 4 — Fréquences</h4>
+        <p>Dans une classe de 25 élèves, les résultats à un QCM (sur 5 points) sont :</p>
+        <table class="data-table">
+          <tr><th>Note</th><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td></tr>
+          <tr><th>Effectif</th><td>3</td><td>5</td><td>8</td><td>6</td><td>3</td></tr>
+          <tr><th>Fréquence (%)</th>
+            <td class="input-cell"><input type="text" class="user-input" data-key="c8-freq1" style="width:55px"></td>
+            <td class="input-cell"><input type="text" class="user-input" data-key="c8-freq2" style="width:55px"></td>
+            <td class="input-cell"><input type="text" class="user-input" data-key="c8-freq3" style="width:55px"></td>
+            <td class="input-cell"><input type="text" class="user-input" data-key="c8-freq4" style="width:55px"></td>
+            <td class="input-cell"><input type="text" class="user-input" data-key="c8-freq5" style="width:55px"></td>
+          </tr>
+        </table>
+        <div class="answer-block">
+          <button class="toggle-answer" onclick="toggleAnswer(this)">Afficher la correction</button>
+          <div class="answer">
+            <div class="answer-label">Correction</div>
+            <p>Fréquence = effectif / 25 × 100</p>
+            <ul>
+              <li>Note 1 : 3/25 × 100 = <strong>12 %</strong></li>
+              <li>Note 2 : 5/25 × 100 = <strong>20 %</strong></li>
+              <li>Note 3 : 8/25 × 100 = <strong>32 %</strong></li>
+              <li>Note 4 : 6/25 × 100 = <strong>24 %</strong></li>
+              <li>Note 5 : 3/25 × 100 = <strong>12 %</strong></li>
+            </ul>
+            <p>Vérification : 12 + 20 + 32 + 24 + 12 = 100 ✓</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </details>
+
+</details>
+
+<!-- ═══════════════════════════════════════════════════════════
+     CHAPITRE 9 — AIRES ET VOLUMES
+═══════════════════════════════════════════════════════════ -->
+<details class="chapter">
+  <summary><span class="chapter-tag">Chap. 9</span> Aires et volumes</summary>
+
+  <details class="section" open>
+    <summary>Cours &amp; rappels</summary>
+    <div class="section-content">
+
+      <div class="block">
+        <h4>Aires des figures planes</h4>
+        <table class="data-table" style="text-align:left;">
+          <tr><th>Figure</th><th>Formule</th></tr>
+          <tr><td>Carré (côté a)</td><td>A = a²</td></tr>
+          <tr><td>Rectangle (L × l)</td><td>A = L × l</td></tr>
+          <tr><td>Triangle (base b, hauteur h)</td><td>A = (b × h) / 2</td></tr>
+          <tr><td>Parallélogramme (base b, hauteur h)</td><td>A = b × h</td></tr>
+          <tr><td>Disque (rayon r)</td><td>A = π × r²</td></tr>
+          <tr><td>Trapèze (bases B et b, hauteur h)</td><td>A = (B + b) × h / 2</td></tr>
+        </table>
+      </div>
+
+      <div class="block">
+        <h4>Volumes des solides</h4>
+        <table class="data-table" style="text-align:left;">
+          <tr><th>Solide</th><th>Formule</th></tr>
+          <tr><td>Cube (côté a)</td><td>V = a³</td></tr>
+          <tr><td>Pavé droit (L × l × h)</td><td>V = L × l × h</td></tr>
+          <tr><td>Prisme (base B, hauteur h)</td><td>V = B × h</td></tr>
+          <tr><td>Cylindre (rayon r, hauteur h)</td><td>V = π × r² × h</td></tr>
+          <tr><td>Pyramide (base B, hauteur h)</td><td>V = B × h / 3</td></tr>
+          <tr><td>Cône (rayon r, hauteur h)</td><td>V = π × r² × h / 3</td></tr>
+          <tr><td>Boule (rayon r)</td><td>V = (4/3) × π × r³</td></tr>
+        </table>
+        <div class="tip">π ≈ 3,14159… Utilise la touche π de ta calculatrice pour plus de précision.</div>
+      </div>
+
+    </div>
+  </details>
+
+  <details class="section">
+    <summary>Exercices</summary>
+    <div class="section-content">
+
+      <div class="block">
+        <h4>Exercice 1 — Aires</h4>
+        <div class="ex-row"><span class="ex-num">1</span> Disque de rayon 5 cm : aire = <input type="text" class="user-input" data-key="c9-aire1" placeholder="… cm²"></div>
+        <div class="ex-row"><span class="ex-num">2</span> Triangle de base 12 cm et hauteur 7 cm : aire = <input type="text" class="user-input" data-key="c9-aire2" placeholder="… cm²"></div>
+        <div class="ex-row"><span class="ex-num">3</span> Trapèze de petite base 6 cm, grande base 10 cm, hauteur 4 cm : aire = <input type="text" class="user-input" data-key="c9-aire3" placeholder="… cm²"></div>
+        <div class="answer-block">
+          <button class="toggle-answer" onclick="toggleAnswer(this)">Afficher la correction</button>
+          <div class="answer">
+            <div class="answer-label">Correction</div>
+            <ol>
+              <li>A = π × 5² = 25π ≈ <strong>78,54 cm²</strong></li>
+              <li>A = (12 × 7) / 2 = <strong>42 cm²</strong></li>
+              <li>A = (10 + 6) × 4 / 2 = 16 × 2 = <strong>32 cm²</strong></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <div class="block">
+        <h4>Exercice 2 — Volumes</h4>
+        <div class="ex-row"><span class="ex-num">1</span> Cylindre de rayon 3 cm et hauteur 10 cm : volume ≈ <input type="text" class="user-input" data-key="c9-vol1" placeholder="… cm³"></div>
+        <div class="ex-row"><span class="ex-num">2</span> Boule de rayon 6 cm : volume ≈ <input type="text" class="user-input" data-key="c9-vol2" placeholder="… cm³"></div>
+        <div class="ex-row"><span class="ex-num">3</span> Pyramide à base carrée de côté 4 cm et de hauteur 9 cm : volume = <input type="text" class="user-input" data-key="c9-vol3" placeholder="… cm³"></div>
+        <div class="answer-block">
+          <button class="toggle-answer" onclick="toggleAnswer(this)">Afficher la correction</button>
+          <div class="answer">
+            <div class="answer-label">Correction</div>
+            <ol>
+              <li>V = π × 3² × 10 = 90π ≈ <strong>282,74 cm³</strong></li>
+              <li>V = (4/3) × π × 6³ = (4/3) × π × 216 = 288π ≈ <strong>904,78 cm³</strong></li>
+              <li>Base = 4² = 16 cm² → V = 16 × 9 / 3 = <strong>48 cm³</strong></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </details>
+
+</details>
+
+<!-- ═══════════════════════════════════════════════════════════
+     BILAN — EXERCICES DE RÉVISION
+═══════════════════════════════════════════════════════════ -->
+<details class="chapter">
+  <summary><span class="chapter-tag">Bilan</span> Exercices de révision — mélange des chapitres</summary>
+
+  <details class="section">
+    <summary>Problèmes de bilan</summary>
+    <div class="section-content">
+
+      <div class="block">
+        <h4>Problème 1 — Pythagore + fractions</h4>
+        <p>Un terrain rectangulaire mesure 3/4 km de long et 1/2 km de large. Quelle est la longueur de sa diagonale ? (arrondi au centième de km)</p>
+        <label class="field-label">Ta résolution</label>
+        <textarea class="user-textarea" data-key="bilan-pb1" placeholder="Dessine un schéma, applique Pythagore aux mesures en km…"></textarea>
+        <div class="answer-block">
+          <button class="toggle-answer" onclick="toggleAnswer(this)">Afficher la correction</button>
+          <div class="answer">
+            <div class="answer-label">Correction</div>
+            <p>d² = (3/4)² + (1/2)² = 9/16 + 4/16 = 13/16</p>
+            <p>d = √(13/16) = √13 / 4 ≈ 3,606/4 ≈ <strong>0,90 km</strong></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="block">
+        <h4>Problème 2 — Équation + pourcentage</h4>
+        <p>Un vendeur propose une réduction de 20 % sur un article. Après réduction, le prix est 48 €. Quel était le prix initial ?</p>
+        <label class="field-label">Pose l'équation et résous</label>
+        <textarea class="user-textarea" data-key="bilan-pb2" placeholder="Appelle le prix initial x. La réduction de 20 % donne : x × 0,8 = 48…"></textarea>
+        <div class="answer-block">
+          <button class="toggle-answer" onclick="toggleAnswer(this)">Afficher la correction</button>
+          <div class="answer">
+            <div class="answer-label">Correction</div>
+            <p>Soit x le prix initial.</p>
+            <p>Après réduction de 20 % : x × (1 − 20/100) = x × 0,8 = 48</p>
+            <p>x = 48 / 0,8 = <strong>60 €</strong></p>
+            <p><em>Vérification : 60 × 0,8 = 48 ✓</em></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="block">
+        <h4>Problème 3 — Probabilité + fréquence</h4>
+        <p>Une urne contient 4 billes rouges, 3 billes bleues et 5 billes vertes.</p>
+        <p><strong>a)</strong> On tire une bille au hasard. Quelle est la probabilité d'obtenir une bille bleue ?</p>
+        <label class="field-label">Réponse a)</label>
+        <input type="text" class="user-input wide" data-key="bilan-pb3a" placeholder="…">
+        <p><strong>b)</strong> Si on effectue 60 tirages (avec remise), combien de fois s'attend-on à tirer une bille verte ?</p>
+        <label class="field-label">Réponse b)</label>
+        <input type="text" class="user-input wide" data-key="bilan-pb3b" placeholder="…">
+        <div class="answer-block">
+          <button class="toggle-answer" onclick="toggleAnswer(this)">Afficher la correction</button>
+          <div class="answer">
+            <div class="answer-label">Correction</div>
+            <p>Total : 4 + 3 + 5 = 12 billes</p>
+            <p><strong>a)</strong> P(bleue) = 3/12 = <strong>1/4</strong></p>
+            <p><strong>b)</strong> P(verte) = 5/12 → sur 60 tirages : 60 × 5/12 = <strong>25 fois</strong></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="block">
+        <h4>Auto-évaluation</h4>
+        <p>Quels chapitres te semblent les plus difficiles ? Qu'est-ce que tu voudrais retravailler ?</p>
+        <textarea class="user-textarea" data-key="bilan-autoeval" style="min-height:80px" placeholder="Mes points forts : …&#10;Ce que je dois retravailler : …"></textarea>
+      </div>
+
+    </div>
+  </details>
+
+</details>
+
+<!-- ═══════════════════════════════════════════════════════════
+     RESSOURCES
+═══════════════════════════════════════════════════════════ -->
+<div class="static-section">
+  <h2>Ressources utiles en mathématiques</h2>
+
+  <h3>Cours et exercices en ligne</h3>
+  <ul>
+    <li><a href="https://www.maths-et-tiques.fr/index.php/cours-maths/quatrieme" target="_blank" rel="noopener">Maths et Tiques — Tous les cours de 4ème (Yvan Monka)</a></li>
+    <li><a href="https://fr.khanacademy.org/math" target="_blank" rel="noopener">Khan Academy France — Exercices et vidéos</a></li>
+    <li><a href="https://www.sesamath.net/" target="_blank" rel="noopener">Sésamath — Manuel numérique gratuit</a></li>
+    <li><a href="https://www.mathenpoche.sesamath.net/" target="_blank" rel="noopener">Mathenpoche — Exercices interactifs</a></li>
+  </ul>
+
+  <h3>Révisions et annales</h3>
+  <ul>
+    <li><a href="https://www.annales.com/4eme.html" target="_blank" rel="noopener">Annales.com — Fiches et exercices 4ème</a></li>
+    <li><a href="https://www.lelivrescolaire.fr/page/6543735" target="_blank" rel="noopener">Le Livre Scolaire — Manuel de maths 4ème (gratuit en ligne)</a></li>
+    <li><a href="https://www.schoolmouv.fr/cours/mathematiques/4eme" target="_blank" rel="noopener">SchoolMouv — Résumés et fiches de cours 4ème</a></li>
+  </ul>
+
+  <h3>Outils de calcul</h3>
+  <ul>
+    <li><a href="https://www.geogebra.org/classic" target="_blank" rel="noopener">GeoGebra — Géométrie interactive et graphiques</a></li>
+    <li><a href="https://www.wolframalpha.com" target="_blank" rel="noopener">Wolfram Alpha — Vérifier des calculs</a></li>
+  </ul>
+</div>
+
+</main>
+
+<footer>
+  Mathématiques 4ème · Programme 2025-2026 · Bon courage !
+</footer>
+
+<div id="save-indicator" class="save-indicator">✓ Enregistré</div>
+
+<script>
+  const STORAGE_PREFIX = 'maths-4eme-';
+  let saveTimeout;
+
+  function initUserInputs() {
+    const fields = document.querySelectorAll('.user-input, .user-textarea');
+    fields.forEach(el => {
+      const key = STORAGE_PREFIX + el.dataset.key;
+      const saved = localStorage.getItem(key);
+      if (saved !== null) {
+        el.value = saved;
+        markFilled(el);
+      }
+      el.addEventListener('input', () => {
+        if (el.value.trim() === '') {
+          localStorage.removeItem(key);
+        } else {
+          localStorage.setItem(key, el.value);
+        }
+        markFilled(el);
+        showSaveIndicator();
+        updateProgress();
+      });
+    });
+    updateProgress();
+  }
+
+  function markFilled(el) {
+    if (el.value.trim() !== '') {
+      el.classList.add('filled');
+    } else {
+      el.classList.remove('filled');
+    }
+  }
+
+  function updateProgress() {
+    const fields = document.querySelectorAll('.user-input, .user-textarea');
+    const filled = Array.from(fields).filter(el => el.value.trim() !== '').length;
+    const pill = document.getElementById('progress-pill');
+    if (pill) pill.textContent = filled + ' / ' + fields.length;
+  }
+
+  function showSaveIndicator() {
+    const indicator = document.getElementById('save-indicator');
+    indicator.classList.add('visible');
+    clearTimeout(saveTimeout);
+    saveTimeout = setTimeout(() => {
+      indicator.classList.remove('visible');
+    }, 1200);
+  }
+
+  function clearAllAnswers() {
+    if (!confirm('Voulez-vous vraiment effacer TOUTES tes réponses ? Cette action est irréversible.')) return;
+    document.querySelectorAll('.user-input, .user-textarea').forEach(el => {
+      const key = STORAGE_PREFIX + el.dataset.key;
+      localStorage.removeItem(key);
+      el.value = '';
+      el.classList.remove('filled');
+    });
+    updateProgress();
+  }
+
+  function exportAnswers() {
+    const data = {};
+    document.querySelectorAll('.user-input, .user-textarea').forEach(el => {
+      if (el.value.trim() !== '') {
+        data[el.dataset.key] = el.value;
+      }
+    });
+    if (Object.keys(data).length === 0) {
+      alert("Aucune réponse à exporter pour l'instant.");
+      return;
+    }
+    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    const date = new Date().toISOString().split('T')[0];
+    a.href = url;
+    a.download = 'maths-4eme-reponses-' + date + '.json';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  }
+
+  function toggleAnswer(btn) {
+    const answer = btn.nextElementSibling;
+    const isVisible = answer.classList.toggle('visible');
+    btn.textContent = isVisible
+      ? btn.textContent.replace('Afficher', 'Masquer')
+      : btn.textContent.replace('Masquer', 'Afficher');
+  }
+
+  function toggleAllAnswers(show) {
+    document.querySelectorAll('.answer-block').forEach(block => {
+      const btn = block.querySelector('.toggle-answer');
+      const answer = block.querySelector('.answer');
+      if (show && !answer.classList.contains('visible')) {
+        answer.classList.add('visible');
+        btn.textContent = btn.textContent.replace('Afficher', 'Masquer');
+      } else if (!show && answer.classList.contains('visible')) {
+        answer.classList.remove('visible');
+        btn.textContent = btn.textContent.replace('Masquer', 'Afficher');
+      }
+    });
+  }
+
+  function toggleAllDetails(open) {
+    document.querySelectorAll('details').forEach(d => d.open = open);
+  }
+
+  initUserInputs();
+</script>
+
+</body>
+</html>
