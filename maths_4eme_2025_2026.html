@@ -277,6 +277,24 @@
     details.section { margin: 0.75rem 0.5rem; }
     .user-input { min-width: 60px; }
   }
+
+  .frac {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    vertical-align: middle;
+    line-height: 1.3;
+    margin: 0 0.15em;
+  }
+  .frac > span {
+    display: block;
+    text-align: center;
+    padding: 0 3px;
+  }
+  .frac > span:first-child {
+    border-bottom: 1.5px solid currentColor;
+    padding-bottom: 1px;
+  }
 </style>
 </head>
 <body>
@@ -290,7 +308,7 @@
 <main>
 
 <div class="intro-card">
-  <h2>Comment utiliser ce cahier <span id="progress-pill" class="progress-pill">0 / 0</span></h2>
+  <h2>Comment utiliser ce cahier <span id="progress-pill" class="progress-pill"><span class="frac"><span>0</span><span>0</span></span></span></h2>
   <ul>
     <li>Lis d'abord le <strong>Cours &amp; rappels</strong> de chaque chapitre</li>
     <li>Essaie de répondre aux exercices <strong>avant</strong> d'afficher la correction</li>
@@ -331,32 +349,32 @@
         <p>On réduit d'abord les fractions au <strong>même dénominateur</strong>, puis on additionne (ou soustrait) les numérateurs.</p>
         <div class="formula-group">
           <div class="formula-title">Même dénominateur</div>
-          <div class="formula">a/n + b/n = (a + b)/n</div>
+          <div class="formula"><span class="frac"><span>a</span><span>n</span></span> + <span class="frac"><span>b</span><span>n</span></span> = <span class="frac"><span>a + b</span><span>n</span></span></div>
         </div>
         <div class="formula-group">
           <div class="formula-title">Dénominateurs différents — exemple</div>
-          <div class="formula">1/3 + 1/4 = 4/12 + 3/12 = 7/12</div>
+          <div class="formula"><span class="frac"><span>1</span><span>3</span></span> + <span class="frac"><span>1</span><span>4</span></span> = <span class="frac"><span>4</span><span>12</span></span> + <span class="frac"><span>3</span><span>12</span></span> = <span class="frac"><span>7</span><span>12</span></span></div>
         </div>
         <div class="tip">Le nouveau dénominateur est le PPCM (le plus petit commun multiple) des deux dénominateurs.</div>
       </div>
 
       <div class="block">
         <h4>Multiplier des fractions</h4>
-        <div class="formula">a/b × c/d = (a × c) / (b × d)</div>
-        <p><strong>Exemple :</strong> 2/3 × 3/4 = (2 × 3) / (3 × 4) = 6/12 = 1/2</p>
+        <div class="formula"><span class="frac"><span>a</span><span>b</span></span> × <span class="frac"><span>c</span><span>d</span></span> = <span class="frac"><span>a × c</span><span>b × d</span></span></div>
+        <p><strong>Exemple :</strong> <span class="frac"><span>2</span><span>3</span></span> × <span class="frac"><span>3</span><span>4</span></span> = <span class="frac"><span>2 × 3</span><span>3 × 4</span></span> = <span class="frac"><span>6</span><span>12</span></span> = <span class="frac"><span>1</span><span>2</span></span></p>
       </div>
 
       <div class="block">
         <h4>Diviser par une fraction</h4>
         <p>Diviser par une fraction revient à <strong>multiplier par son inverse</strong>.</p>
-        <div class="formula">a/b ÷ c/d = a/b × d/c = (a × d) / (b × c)</div>
-        <p><strong>Exemple :</strong> 3/4 ÷ 2/5 = 3/4 × 5/2 = 15/8</p>
+        <div class="formula"><span class="frac"><span>a</span><span>b</span></span> ÷ <span class="frac"><span>c</span><span>d</span></span> = <span class="frac"><span>a</span><span>b</span></span> × <span class="frac"><span>d</span><span>c</span></span> = <span class="frac"><span>a × d</span><span>b × c</span></span></div>
+        <p><strong>Exemple :</strong> <span class="frac"><span>3</span><span>4</span></span> ÷ <span class="frac"><span>2</span><span>5</span></span> = <span class="frac"><span>3</span><span>4</span></span> × <span class="frac"><span>5</span><span>2</span></span> = <span class="frac"><span>15</span><span>8</span></span></p>
       </div>
 
       <div class="block">
         <h4>Simplifier une fraction</h4>
         <p>On divise le numérateur et le dénominateur par leur PGCD (plus grand commun diviseur).</p>
-        <p><strong>Exemple :</strong> 12/18 — PGCD(12,18) = 6 — donc 12/18 = 2/3</p>
+        <p><strong>Exemple :</strong> <span class="frac"><span>12</span><span>18</span></span> — PGCD(12,18) = 6 — donc <span class="frac"><span>12</span><span>18</span></span> = <span class="frac"><span>2</span><span>3</span></span></p>
       </div>
     </div>
   </details>
@@ -368,17 +386,17 @@
       <div class="block">
         <h4>Exercice 1 — Même dénominateur</h4>
         <p>Calcule (donne le résultat en fraction simplifiée) :</p>
-        <div class="ex-row"><span class="ex-num">1</span> 3/7 + 2/7 = <input type="text" class="user-input" data-key="c1-b1-1" placeholder="…"></div>
-        <div class="ex-row"><span class="ex-num">2</span> 5/9 - 2/9 = <input type="text" class="user-input" data-key="c1-b1-2" placeholder="…"></div>
-        <div class="ex-row"><span class="ex-num">3</span> 4/11 + 7/11 = <input type="text" class="user-input" data-key="c1-b1-3" placeholder="…"></div>
+        <div class="ex-row"><span class="ex-num">1</span> <span class="frac"><span>3</span><span>7</span></span> + <span class="frac"><span>2</span><span>7</span></span> = <input type="text" class="user-input" data-key="c1-b1-1" placeholder="…"></div>
+        <div class="ex-row"><span class="ex-num">2</span> <span class="frac"><span>5</span><span>9</span></span> - <span class="frac"><span>2</span><span>9</span></span> = <input type="text" class="user-input" data-key="c1-b1-2" placeholder="…"></div>
+        <div class="ex-row"><span class="ex-num">3</span> <span class="frac"><span>4</span><span>11</span></span> + <span class="frac"><span>7</span><span>11</span></span> = <input type="text" class="user-input" data-key="c1-b1-3" placeholder="…"></div>
         <div class="answer-block">
           <button class="toggle-answer" onclick="toggleAnswer(this)">Afficher la correction</button>
           <div class="answer">
             <div class="answer-label">Correction</div>
             <ol>
-              <li>3/7 + 2/7 = <strong>5/7</strong></li>
-              <li>5/9 - 2/9 = <strong>3/9 = 1/3</strong></li>
-              <li>4/11 + 7/11 = <strong>11/11 = 1</strong></li>
+              <li><span class="frac"><span>3</span><span>7</span></span> + <span class="frac"><span>2</span><span>7</span></span> = <strong><span class="frac"><span>5</span><span>7</span></span></strong></li>
+              <li><span class="frac"><span>5</span><span>9</span></span> - <span class="frac"><span>2</span><span>9</span></span> = <strong><span class="frac"><span>3</span><span>9</span></span> = <span class="frac"><span>1</span><span>3</span></span></strong></li>
+              <li><span class="frac"><span>4</span><span>11</span></span> + <span class="frac"><span>7</span><span>11</span></span> = <strong><span class="frac"><span>11</span><span>11</span></span> = 1</strong></li>
             </ol>
           </div>
         </div>
@@ -387,19 +405,19 @@
       <div class="block">
         <h4>Exercice 2 — Dénominateurs différents</h4>
         <p>Calcule en réduisant au même dénominateur :</p>
-        <div class="ex-row"><span class="ex-num">1</span> 1/2 + 1/4 = <input type="text" class="user-input" data-key="c1-b2-1" placeholder="…"></div>
-        <div class="ex-row"><span class="ex-num">2</span> 3/4 - 1/3 = <input type="text" class="user-input" data-key="c1-b2-2" placeholder="…"></div>
-        <div class="ex-row"><span class="ex-num">3</span> 2/5 + 1/3 = <input type="text" class="user-input" data-key="c1-b2-3" placeholder="…"></div>
-        <div class="ex-row"><span class="ex-num">4</span> 5/6 - 1/4 = <input type="text" class="user-input" data-key="c1-b2-4" placeholder="…"></div>
+        <div class="ex-row"><span class="ex-num">1</span> <span class="frac"><span>1</span><span>2</span></span> + <span class="frac"><span>1</span><span>4</span></span> = <input type="text" class="user-input" data-key="c1-b2-1" placeholder="…"></div>
+        <div class="ex-row"><span class="ex-num">2</span> <span class="frac"><span>3</span><span>4</span></span> - <span class="frac"><span>1</span><span>3</span></span> = <input type="text" class="user-input" data-key="c1-b2-2" placeholder="…"></div>
+        <div class="ex-row"><span class="ex-num">3</span> <span class="frac"><span>2</span><span>5</span></span> + <span class="frac"><span>1</span><span>3</span></span> = <input type="text" class="user-input" data-key="c1-b2-3" placeholder="…"></div>
+        <div class="ex-row"><span class="ex-num">4</span> <span class="frac"><span>5</span><span>6</span></span> - <span class="frac"><span>1</span><span>4</span></span> = <input type="text" class="user-input" data-key="c1-b2-4" placeholder="…"></div>
         <div class="answer-block">
           <button class="toggle-answer" onclick="toggleAnswer(this)">Afficher la correction</button>
           <div class="answer">
             <div class="answer-label">Correction</div>
             <ol>
-              <li>1/2 + 1/4 = 2/4 + 1/4 = <strong>3/4</strong></li>
-              <li>3/4 - 1/3 = 9/12 - 4/12 = <strong>5/12</strong></li>
-              <li>2/5 + 1/3 = 6/15 + 5/15 = <strong>11/15</strong></li>
-              <li>5/6 - 1/4 = 10/12 - 3/12 = <strong>7/12</strong></li>
+              <li><span class="frac"><span>1</span><span>2</span></span> + <span class="frac"><span>1</span><span>4</span></span> = <span class="frac"><span>2</span><span>4</span></span> + <span class="frac"><span>1</span><span>4</span></span> = <strong><span class="frac"><span>3</span><span>4</span></span></strong></li>
+              <li><span class="frac"><span>3</span><span>4</span></span> - <span class="frac"><span>1</span><span>3</span></span> = <span class="frac"><span>9</span><span>12</span></span> - <span class="frac"><span>4</span><span>12</span></span> = <strong><span class="frac"><span>5</span><span>12</span></span></strong></li>
+              <li><span class="frac"><span>2</span><span>5</span></span> + <span class="frac"><span>1</span><span>3</span></span> = <span class="frac"><span>6</span><span>15</span></span> + <span class="frac"><span>5</span><span>15</span></span> = <strong><span class="frac"><span>11</span><span>15</span></span></strong></li>
+              <li><span class="frac"><span>5</span><span>6</span></span> - <span class="frac"><span>1</span><span>4</span></span> = <span class="frac"><span>10</span><span>12</span></span> - <span class="frac"><span>3</span><span>12</span></span> = <strong><span class="frac"><span>7</span><span>12</span></span></strong></li>
             </ol>
           </div>
         </div>
@@ -407,19 +425,19 @@
 
       <div class="block">
         <h4>Exercice 3 — Multiplication et division</h4>
-        <div class="ex-row"><span class="ex-num">1</span> 2/3 × 3/5 = <input type="text" class="user-input" data-key="c1-b3-1" placeholder="…"></div>
-        <div class="ex-row"><span class="ex-num">2</span> 4/7 × 7/8 = <input type="text" class="user-input" data-key="c1-b3-2" placeholder="…"></div>
-        <div class="ex-row"><span class="ex-num">3</span> 3/4 ÷ 1/2 = <input type="text" class="user-input" data-key="c1-b3-3" placeholder="…"></div>
-        <div class="ex-row"><span class="ex-num">4</span> 2/5 ÷ 4/15 = <input type="text" class="user-input" data-key="c1-b3-4" placeholder="…"></div>
+        <div class="ex-row"><span class="ex-num">1</span> <span class="frac"><span>2</span><span>3</span></span> × <span class="frac"><span>3</span><span>5</span></span> = <input type="text" class="user-input" data-key="c1-b3-1" placeholder="…"></div>
+        <div class="ex-row"><span class="ex-num">2</span> <span class="frac"><span>4</span><span>7</span></span> × <span class="frac"><span>7</span><span>8</span></span> = <input type="text" class="user-input" data-key="c1-b3-2" placeholder="…"></div>
+        <div class="ex-row"><span class="ex-num">3</span> <span class="frac"><span>3</span><span>4</span></span> ÷ <span class="frac"><span>1</span><span>2</span></span> = <input type="text" class="user-input" data-key="c1-b3-3" placeholder="…"></div>
+        <div class="ex-row"><span class="ex-num">4</span> <span class="frac"><span>2</span><span>5</span></span> ÷ <span class="frac"><span>4</span><span>15</span></span> = <input type="text" class="user-input" data-key="c1-b3-4" placeholder="…"></div>
         <div class="answer-block">
           <button class="toggle-answer" onclick="toggleAnswer(this)">Afficher la correction</button>
           <div class="answer">
             <div class="answer-label">Correction</div>
             <ol>
-              <li>2/3 × 3/5 = 6/15 = <strong>2/5</strong></li>
-              <li>4/7 × 7/8 = 28/56 = <strong>1/2</strong></li>
-              <li>3/4 ÷ 1/2 = 3/4 × 2/1 = 6/4 = <strong>3/2</strong></li>
-              <li>2/5 ÷ 4/15 = 2/5 × 15/4 = 30/20 = <strong>3/2</strong></li>
+              <li><span class="frac"><span>2</span><span>3</span></span> × <span class="frac"><span>3</span><span>5</span></span> = <span class="frac"><span>6</span><span>15</span></span> = <strong><span class="frac"><span>2</span><span>5</span></span></strong></li>
+              <li><span class="frac"><span>4</span><span>7</span></span> × <span class="frac"><span>7</span><span>8</span></span> = <span class="frac"><span>28</span><span>56</span></span> = <strong><span class="frac"><span>1</span><span>2</span></span></strong></li>
+              <li><span class="frac"><span>3</span><span>4</span></span> ÷ <span class="frac"><span>1</span><span>2</span></span> = <span class="frac"><span>3</span><span>4</span></span> × <span class="frac"><span>2</span><span>1</span></span> = <span class="frac"><span>6</span><span>4</span></span> = <strong><span class="frac"><span>3</span><span>2</span></span></strong></li>
+              <li><span class="frac"><span>2</span><span>5</span></span> ÷ <span class="frac"><span>4</span><span>15</span></span> = <span class="frac"><span>2</span><span>5</span></span> × <span class="frac"><span>15</span><span>4</span></span> = <span class="frac"><span>30</span><span>20</span></span> = <strong><span class="frac"><span>3</span><span>2</span></span></strong></li>
             </ol>
           </div>
         </div>
@@ -435,17 +453,17 @@
       <div class="block">
         <h4>Exercice 4 — Calculs en plusieurs étapes</h4>
         <p>Calcule :</p>
-        <div class="ex-row"><span class="ex-num">1</span> (1/2 + 1/3) × 6 = <input type="text" class="user-input" data-key="c1-i1-1" placeholder="…"></div>
-        <div class="ex-row"><span class="ex-num">2</span> 3/4 × (2/3 + 1/6) = <input type="text" class="user-input" data-key="c1-i1-2" placeholder="…"></div>
-        <div class="ex-row"><span class="ex-num">3</span> (5/6 - 1/3) ÷ 1/4 = <input type="text" class="user-input" data-key="c1-i1-3" placeholder="…"></div>
+        <div class="ex-row"><span class="ex-num">1</span> (<span class="frac"><span>1</span><span>2</span></span> + <span class="frac"><span>1</span><span>3</span></span>) × 6 = <input type="text" class="user-input" data-key="c1-i1-1" placeholder="…"></div>
+        <div class="ex-row"><span class="ex-num">2</span> <span class="frac"><span>3</span><span>4</span></span> × (<span class="frac"><span>2</span><span>3</span></span> + <span class="frac"><span>1</span><span>6</span></span>) = <input type="text" class="user-input" data-key="c1-i1-2" placeholder="…"></div>
+        <div class="ex-row"><span class="ex-num">3</span> (<span class="frac"><span>5</span><span>6</span></span> - <span class="frac"><span>1</span><span>3</span></span>) ÷ <span class="frac"><span>1</span><span>4</span></span> = <input type="text" class="user-input" data-key="c1-i1-3" placeholder="…"></div>
         <div class="answer-block">
           <button class="toggle-answer" onclick="toggleAnswer(this)">Afficher la correction</button>
           <div class="answer">
             <div class="answer-label">Correction</div>
             <ol>
-              <li>(1/2 + 1/3) × 6 = (3/6 + 2/6) × 6 = 5/6 × 6 = <strong>5</strong></li>
-              <li>3/4 × (4/6 + 1/6) = 3/4 × 5/6 = 15/24 = <strong>5/8</strong></li>
-              <li>(5/6 - 2/6) ÷ 1/4 = 3/6 × 4/1 = 1/2 × 4 = <strong>2</strong></li>
+              <li>(<span class="frac"><span>1</span><span>2</span></span> + <span class="frac"><span>1</span><span>3</span></span>) × 6 = (<span class="frac"><span>3</span><span>6</span></span> + <span class="frac"><span>2</span><span>6</span></span>) × 6 = <span class="frac"><span>5</span><span>6</span></span> × 6 = <strong>5</strong></li>
+              <li><span class="frac"><span>3</span><span>4</span></span> × (<span class="frac"><span>4</span><span>6</span></span> + <span class="frac"><span>1</span><span>6</span></span>) = <span class="frac"><span>3</span><span>4</span></span> × <span class="frac"><span>5</span><span>6</span></span> = <span class="frac"><span>15</span><span>24</span></span> = <strong><span class="frac"><span>5</span><span>8</span></span></strong></li>
+              <li>(<span class="frac"><span>5</span><span>6</span></span> - <span class="frac"><span>2</span><span>6</span></span>) ÷ <span class="frac"><span>1</span><span>4</span></span> = <span class="frac"><span>3</span><span>6</span></span> × <span class="frac"><span>4</span><span>1</span></span> = <span class="frac"><span>1</span><span>2</span></span> × 4 = <strong>2</strong></li>
             </ol>
           </div>
         </div>
@@ -453,7 +471,7 @@
 
       <div class="block">
         <h4>Problème — Gâteau</h4>
-        <p>Un gâteau est partagé entre trois personnes. Léa mange 1/4 du gâteau, Tom mange 1/3, et Zoé mange 1/6.</p>
+        <p>Un gâteau est partagé entre trois personnes. Léa mange <span class="frac"><span>1</span><span>4</span></span> du gâteau, Tom mange <span class="frac"><span>1</span><span>3</span></span>, et Zoé mange <span class="frac"><span>1</span><span>6</span></span>.</p>
         <p><strong>a)</strong> Quelle fraction du gâteau ont-ils mangée en tout ?</p>
         <label class="field-label">Ta réponse</label>
         <input type="text" class="user-input wide" data-key="c1-pb1-a" placeholder="…">
@@ -464,8 +482,8 @@
           <button class="toggle-answer" onclick="toggleAnswer(this)">Afficher la correction</button>
           <div class="answer">
             <div class="answer-label">Correction</div>
-            <p><strong>a)</strong> 1/4 + 1/3 + 1/6 = 3/12 + 4/12 + 2/12 = <strong>9/12 = 3/4</strong></p>
-            <p><strong>b)</strong> Il reste 1 - 3/4 = <strong>1/4</strong> du gâteau.</p>
+            <p><strong>a)</strong> <span class="frac"><span>1</span><span>4</span></span> + <span class="frac"><span>1</span><span>3</span></span> + <span class="frac"><span>1</span><span>6</span></span> = <span class="frac"><span>3</span><span>12</span></span> + <span class="frac"><span>4</span><span>12</span></span> + <span class="frac"><span>2</span><span>12</span></span> = <strong><span class="frac"><span>9</span><span>12</span></span> = <span class="frac"><span>3</span><span>4</span></span></strong></p>
+            <p><strong>b)</strong> Il reste 1 - <span class="frac"><span>3</span><span>4</span></span> = <strong><span class="frac"><span>1</span><span>4</span></span></strong> du gâteau.</p>
           </div>
         </div>
       </div>
@@ -497,8 +515,8 @@
         <div class="formula">a<sup>n</sup> = a × a × a × … × a <em>(n facteurs)</em></div>
         <p><strong>Exemples :</strong> 2<sup>4</sup> = 2 × 2 × 2 × 2 = 16 &nbsp;·&nbsp; 3<sup>3</sup> = 27 &nbsp;·&nbsp; 10<sup>5</sup> = 100 000</p>
         <div class="formula">a<sup>0</sup> = 1 (pour tout a ≠ 0)</div>
-        <div class="formula">a<sup>−n</sup> = 1 / a<sup>n</sup></div>
-        <p><strong>Exemple :</strong> 2<sup>−3</sup> = 1/2<sup>3</sup> = 1/8</p>
+        <div class="formula">a<sup>−n</sup> = <span class="frac"><span>1</span><span>a<sup>n</sup></span></span></div>
+        <p><strong>Exemple :</strong> 2<sup>−3</sup> = <span class="frac"><span>1</span><span>2<sup>3</sup></span></span> = <span class="frac"><span>1</span><span>8</span></span></p>
       </div>
 
       <div class="block">
@@ -557,7 +575,7 @@
               <li>10<sup>6</sup> = <strong>1 000 000</strong></li>
               <li>(−2)<sup>3</sup> = −8 (produit de 3 négatifs = négatif)</li>
               <li>5<sup>0</sup> = <strong>1</strong></li>
-              <li>4<sup>−2</sup> = 1/4<sup>2</sup> = <strong>1/16</strong></li>
+              <li>4<sup>−2</sup> = <span class="frac"><span>1</span><span>4<sup>2</sup></span></span> = <strong><span class="frac"><span>1</span><span>16</span></span></strong></li>
             </ol>
           </div>
         </div>
@@ -782,22 +800,22 @@
         <h4>Proportionnalité</h4>
         <p>Deux grandeurs sont proportionnelles quand leurs quotients sont tous égaux (coefficient de proportionnalité k).</p>
         <div class="formula">y = k × x</div>
-        <p>On peut utiliser le <strong>produit en croix</strong> : si a/b = c/d alors a × d = b × c</p>
+        <p>On peut utiliser le <strong>produit en croix</strong> : si <span class="frac"><span>a</span><span>b</span></span> = <span class="frac"><span>c</span><span>d</span></span> alors a × d = b × c</p>
       </div>
 
       <div class="block">
         <h4>Pourcentages</h4>
         <div class="formula-group">
           <div class="formula-title">p % de a</div>
-          <div class="formula">(p / 100) × a</div>
+          <div class="formula"><span class="frac"><span>p</span><span>100</span></span> × a</div>
         </div>
         <div class="formula-group">
           <div class="formula-title">Augmentation de p %</div>
-          <div class="formula">Nouvelle valeur = ancienne × (1 + p/100)</div>
+          <div class="formula">Nouvelle valeur = ancienne × (1 + <span class="frac"><span>p</span><span>100</span></span>)</div>
         </div>
         <div class="formula-group">
           <div class="formula-title">Réduction de p %</div>
-          <div class="formula">Nouvelle valeur = ancienne × (1 − p/100)</div>
+          <div class="formula">Nouvelle valeur = ancienne × (1 − <span class="frac"><span>p</span><span>100</span></span>)</div>
         </div>
       </div>
 
@@ -805,7 +823,7 @@
         <h4>Vitesse — distance — durée</h4>
         <div class="formula-group">
           <div class="formula-title">Formules fondamentales</div>
-          <div class="formula">v = d / t &nbsp;&nbsp; d = v × t &nbsp;&nbsp; t = d / v</div>
+          <div class="formula">v = <span class="frac"><span>d</span><span>t</span></span> &nbsp;&nbsp; d = v × t &nbsp;&nbsp; t = <span class="frac"><span>d</span><span>v</span></span></div>
         </div>
         <div class="tip">Unités : v en km/h, d en km, t en h (ou v en m/s, d en m, t en s)</div>
       </div>
@@ -829,10 +847,10 @@
           <button class="toggle-answer" onclick="toggleAnswer(this)">Afficher la correction</button>
           <div class="answer">
             <div class="answer-label">Correction</div>
-            <p>Coefficient : k = 7/2 = 3,5</p>
+            <p>Coefficient : k = <span class="frac"><span>7</span><span>2</span></span> = 3,5</p>
             <ul>
               <li>Prix pour 5 livres : 5 × 3,5 = <strong>17,50 €</strong></li>
-              <li>Nombre de livres pour 21 € : 21 / 3,5 = <strong>6 livres</strong></li>
+              <li>Nombre de livres pour 21 € : <span class="frac"><span>21</span><span>3,5</span></span> = <strong>6 livres</strong></li>
               <li>Prix pour 12 livres : 12 × 3,5 = <strong>42 €</strong></li>
             </ul>
           </div>
@@ -850,10 +868,10 @@
           <div class="answer">
             <div class="answer-label">Correction</div>
             <ol>
-              <li>20/100 × 150 = <strong>30 €</strong></li>
-              <li>80 × (1 − 25/100) = 80 × 0,75 = <strong>60 €</strong></li>
-              <li>1 600 × (1 + 5/100) = 1 600 × 1,05 = <strong>1 680 €</strong></li>
-              <li>Réduction = 60 − 45 = 15 € → taux = (15/60) × 100 = <strong>25 %</strong></li>
+              <li><span class="frac"><span>20</span><span>100</span></span> × 150 = <strong>30 €</strong></li>
+              <li>80 × (1 − <span class="frac"><span>25</span><span>100</span></span>) = 80 × 0,75 = <strong>60 €</strong></li>
+              <li>1 600 × (1 + <span class="frac"><span>5</span><span>100</span></span>) = 1 600 × 1,05 = <strong>1 680 €</strong></li>
+              <li>Réduction = 60 − 45 = 15 € → taux = (<span class="frac"><span>15</span><span>60</span></span>) × 100 = <strong>25 %</strong></li>
             </ol>
           </div>
         </div>
@@ -870,8 +888,8 @@
             <div class="answer-label">Correction</div>
             <ol>
               <li>t = 2,5 h → d = 160 × 2,5 = <strong>400 km</strong></li>
-              <li>v = 360 / 4 = <strong>90 km/h</strong></li>
-              <li>t = 50 / 20 = <strong>2,5 h = 2 h 30 min</strong></li>
+              <li>v = <span class="frac"><span>360</span><span>4</span></span> = <strong>90 km/h</strong></li>
+              <li>t = <span class="frac"><span>50</span><span>20</span></span> = <strong>2,5 h = 2 h 30 min</strong></li>
             </ol>
           </div>
         </div>
@@ -1011,7 +1029,7 @@
       <div class="block">
         <h4>Configuration de Thalès (dans un triangle)</h4>
         <blockquote>Dans un triangle ABC, si la droite (MN) est parallèle à (BC), avec M sur [AB] et N sur [AC], alors :</blockquote>
-        <div class="formula">AM / AB = AN / AC = MN / BC</div>
+        <div class="formula"><span class="frac"><span>AM</span><span>AB</span></span> = <span class="frac"><span>AN</span><span>AC</span></span> = <span class="frac"><span>MN</span><span>BC</span></span></div>
         <p>Ces trois rapports sont égaux au <strong>coefficient de réduction/agrandissement</strong>.</p>
         <div class="tip">Pour trouver une longueur inconnue, on pose l'égalité des deux rapports qui contiennent l'inconnue, puis on résout par produit en croix.</div>
       </div>
@@ -1019,7 +1037,7 @@
       <div class="block">
         <h4>Configuration de Thalès (droites sécantes)</h4>
         <blockquote>Deux droites sécantes en O sont coupées par deux droites parallèles en A, B et A', B' respectivement.</blockquote>
-        <div class="formula">OA / OA' = OB / OB' = AB / A'B'</div>
+        <div class="formula"><span class="frac"><span>OA</span><span>OA'</span></span> = <span class="frac"><span>OB</span><span>OB'</span></span> = <span class="frac"><span>AB</span><span>A'B'</span></span></div>
       </div>
     </div>
   </details>
@@ -1039,9 +1057,9 @@
           <div class="answer">
             <div class="answer-label">Correction</div>
             <ol>
-              <li>AM/AB = AN/AC → 4/10 = AN/15 → AN = (4 × 15) / 10 = <strong>6 cm</strong></li>
-              <li>AB = AM + MB = 3 + 5 = 8 ; AM/AB = AN/AC → 3/8 = 2,4/AC → AC = (2,4 × 8)/3 = 6,4 ; NC = AC − AN = 6,4 − 2,4 = <strong>4 cm</strong></li>
-              <li>AM/AB = MN/BC → 9/12 = MN/8 → MN = (9 × 8)/12 = <strong>6 cm</strong></li>
+              <li><span class="frac"><span>AM</span><span>AB</span></span> = <span class="frac"><span>AN</span><span>AC</span></span> → <span class="frac"><span>4</span><span>10</span></span> = <span class="frac"><span>AN</span><span>15</span></span> → AN = <span class="frac"><span>4 × 15</span><span>10</span></span> = <strong>6 cm</strong></li>
+              <li>AB = AM + MB = 3 + 5 = 8 ; <span class="frac"><span>AM</span><span>AB</span></span> = <span class="frac"><span>AN</span><span>AC</span></span> → <span class="frac"><span>3</span><span>8</span></span> = <span class="frac"><span>2,4</span><span>AC</span></span> → AC = <span class="frac"><span>2,4 × 8</span><span>3</span></span> = 6,4 ; NC = AC − AN = 6,4 − 2,4 = <strong>4 cm</strong></li>
+              <li><span class="frac"><span>AM</span><span>AB</span></span> = <span class="frac"><span>MN</span><span>BC</span></span> → <span class="frac"><span>9</span><span>12</span></span> = <span class="frac"><span>MN</span><span>8</span></span> → MN = <span class="frac"><span>9 × 8</span><span>12</span></span> = <strong>6 cm</strong></li>
             </ol>
           </div>
         </div>
@@ -1057,8 +1075,8 @@
           <div class="answer">
             <div class="answer-label">Correction</div>
             <p>Les rayons du soleil sont parallèles : on a deux triangles semblables.</p>
-            <p>hauteur arbre / ombre arbre = hauteur poteau / ombre poteau</p>
-            <p>8 / 10 = h / 4 → h = (8 × 4) / 10 = 32/10 = <strong>3,2 m</strong></p>
+            <p><span class="frac"><span>hauteur arbre</span><span>ombre arbre</span></span> = <span class="frac"><span>hauteur poteau</span><span>ombre poteau</span></span></p>
+            <p><span class="frac"><span>8</span><span>10</span></span> = <span class="frac"><span>h</span><span>4</span></span> → h = <span class="frac"><span>8 × 4</span><span>10</span></span> = <span class="frac"><span>32</span><span>10</span></span> = <strong>3,2 m</strong></p>
           </div>
         </div>
       </div>
@@ -1205,7 +1223,7 @@
         <p>Une <strong>expérience aléatoire</strong> a plusieurs issues possibles qu'on ne peut pas prévoir à l'avance.</p>
         <div class="formula-group">
           <div class="formula-title">Probabilité (situations d'équiprobabilité)</div>
-          <div class="formula">P(A) = nombre de cas favorables / nombre de cas possibles</div>
+          <div class="formula">P(A) = <span class="frac"><span>nombre de cas favorables</span><span>nombre de cas possibles</span></span></div>
         </div>
         <p><strong>Propriétés :</strong></p>
         <ul>
@@ -1214,14 +1232,14 @@
           <li>P(événement impossible) = 0</li>
           <li>P(contraire de A) = 1 − P(A)</li>
         </ul>
-        <div class="tip">P(A) = 0,5 signifie que l'événement a 50% de chances de se réaliser. P(A) = 1/4 signifie 25% de chances.</div>
+        <div class="tip">P(A) = 0,5 signifie que l'événement a 50% de chances de se réaliser. P(A) = <span class="frac"><span>1</span><span>4</span></span> signifie 25% de chances.</div>
       </div>
 
       <div class="block">
         <h4>Statistiques — Indicateurs</h4>
         <div class="formula-group">
           <div class="formula-title">Moyenne</div>
-          <div class="formula">x̄ = (somme de toutes les valeurs) / (nombre de valeurs)</div>
+          <div class="formula">x̄ = <span class="frac"><span>somme de toutes les valeurs</span><span>nombre de valeurs</span></span></div>
         </div>
         <div class="formula-group">
           <div class="formula-title">Étendue</div>
@@ -1231,7 +1249,7 @@
           <div class="formula-title">Médiane</div>
           <div class="formula">Valeur qui partage la série ordonnée en deux moitiés égales</div>
         </div>
-        <p><strong>Fréquence :</strong> fréquence de x = (nombre d'apparitions de x) / (nombre total de valeurs)</p>
+        <p><strong>Fréquence :</strong> fréquence de x = <span class="frac"><span>nombre d'apparitions de x</span><span>nombre total de valeurs</span></span></p>
       </div>
     </div>
   </details>
@@ -1252,10 +1270,10 @@
           <div class="answer">
             <div class="answer-label">Correction</div>
             <ol>
-              <li>P(4) = 1/6</li>
-              <li>Nombres pairs : {2, 4, 6} → P(pair) = 3/6 = <strong>1/2</strong></li>
-              <li>Nombres ≥ 5 : {5, 6} → P(≥5) = 2/6 = <strong>1/3</strong></li>
-              <li>P(pas 6) = 1 − P(6) = 1 − 1/6 = <strong>5/6</strong></li>
+              <li>P(4) = <span class="frac"><span>1</span><span>6</span></span></li>
+              <li>Nombres pairs : {2, 4, 6} → P(pair) = <span class="frac"><span>3</span><span>6</span></span> = <strong><span class="frac"><span>1</span><span>2</span></span></strong></li>
+              <li>Nombres ≥ 5 : {5, 6} → P(≥5) = <span class="frac"><span>2</span><span>6</span></span> = <strong><span class="frac"><span>1</span><span>3</span></span></strong></li>
+              <li>P(pas 6) = 1 − P(6) = 1 − <span class="frac"><span>1</span><span>6</span></span> = <strong><span class="frac"><span>5</span><span>6</span></span></strong></li>
             </ol>
           </div>
         </div>
@@ -1272,9 +1290,9 @@
           <div class="answer">
             <div class="answer-label">Correction</div>
             <ol>
-              <li>4 as dans 32 cartes → P(as) = 4/32 = <strong>1/8</strong></li>
-              <li>8 cœurs dans 32 cartes → P(cœur) = 8/32 = <strong>1/4</strong></li>
-              <li>4 rois + 4 dames = 8 cartes → P(roi ou dame) = 8/32 = <strong>1/4</strong></li>
+              <li>4 as dans 32 cartes → P(as) = <span class="frac"><span>4</span><span>32</span></span> = <strong><span class="frac"><span>1</span><span>8</span></span></strong></li>
+              <li>8 cœurs dans 32 cartes → P(cœur) = <span class="frac"><span>8</span><span>32</span></span> = <strong><span class="frac"><span>1</span><span>4</span></span></strong></li>
+              <li>4 rois + 4 dames = 8 cartes → P(roi ou dame) = <span class="frac"><span>8</span><span>32</span></span> = <strong><span class="frac"><span>1</span><span>4</span></span></strong></li>
             </ol>
           </div>
         </div>
@@ -1299,7 +1317,7 @@
             <div class="answer-label">Correction</div>
             <p>Série ordonnée : 8 · 9 · 10 · <strong>12</strong> · 14 · 15 · 17</p>
             <ol>
-              <li>Moyenne = (12+15+8+17+10+14+9) / 7 = 85 / 7 ≈ <strong>12,14</strong></li>
+              <li>Moyenne = <span class="frac"><span>12+15+8+17+10+14+9</span><span>7</span></span> = <span class="frac"><span>85</span><span>7</span></span> ≈ <strong>12,14</strong></li>
               <li>Étendue = 17 − 8 = <strong>9</strong></li>
               <li>7 valeurs → médiane = 4<sup>ème</sup> valeur = <strong>12</strong></li>
             </ol>
@@ -1325,13 +1343,13 @@
           <button class="toggle-answer" onclick="toggleAnswer(this)">Afficher la correction</button>
           <div class="answer">
             <div class="answer-label">Correction</div>
-            <p>Fréquence = effectif / 25 × 100</p>
+            <p>Fréquence = <span class="frac"><span>effectif</span><span>25</span></span> × 100</p>
             <ul>
-              <li>Note 1 : 3/25 × 100 = <strong>12 %</strong></li>
-              <li>Note 2 : 5/25 × 100 = <strong>20 %</strong></li>
-              <li>Note 3 : 8/25 × 100 = <strong>32 %</strong></li>
-              <li>Note 4 : 6/25 × 100 = <strong>24 %</strong></li>
-              <li>Note 5 : 3/25 × 100 = <strong>12 %</strong></li>
+              <li>Note 1 : <span class="frac"><span>3</span><span>25</span></span> × 100 = <strong>12 %</strong></li>
+              <li>Note 2 : <span class="frac"><span>5</span><span>25</span></span> × 100 = <strong>20 %</strong></li>
+              <li>Note 3 : <span class="frac"><span>8</span><span>25</span></span> × 100 = <strong>32 %</strong></li>
+              <li>Note 4 : <span class="frac"><span>6</span><span>25</span></span> × 100 = <strong>24 %</strong></li>
+              <li>Note 5 : <span class="frac"><span>3</span><span>25</span></span> × 100 = <strong>12 %</strong></li>
             </ul>
             <p>Vérification : 12 + 20 + 32 + 24 + 12 = 100 ✓</p>
           </div>
@@ -1359,10 +1377,10 @@
           <tr><th>Figure</th><th>Formule</th></tr>
           <tr><td>Carré (côté a)</td><td>A = a²</td></tr>
           <tr><td>Rectangle (L × l)</td><td>A = L × l</td></tr>
-          <tr><td>Triangle (base b, hauteur h)</td><td>A = (b × h) / 2</td></tr>
+          <tr><td>Triangle (base b, hauteur h)</td><td>A = <span class="frac"><span>b × h</span><span>2</span></span></td></tr>
           <tr><td>Parallélogramme (base b, hauteur h)</td><td>A = b × h</td></tr>
           <tr><td>Disque (rayon r)</td><td>A = π × r²</td></tr>
-          <tr><td>Trapèze (bases B et b, hauteur h)</td><td>A = (B + b) × h / 2</td></tr>
+          <tr><td>Trapèze (bases B et b, hauteur h)</td><td>A = <span class="frac"><span>(B + b) × h</span><span>2</span></span></td></tr>
         </table>
       </div>
 
@@ -1374,9 +1392,9 @@
           <tr><td>Pavé droit (L × l × h)</td><td>V = L × l × h</td></tr>
           <tr><td>Prisme (base B, hauteur h)</td><td>V = B × h</td></tr>
           <tr><td>Cylindre (rayon r, hauteur h)</td><td>V = π × r² × h</td></tr>
-          <tr><td>Pyramide (base B, hauteur h)</td><td>V = B × h / 3</td></tr>
-          <tr><td>Cône (rayon r, hauteur h)</td><td>V = π × r² × h / 3</td></tr>
-          <tr><td>Boule (rayon r)</td><td>V = (4/3) × π × r³</td></tr>
+          <tr><td>Pyramide (base B, hauteur h)</td><td>V = <span class="frac"><span>B × h</span><span>3</span></span></td></tr>
+          <tr><td>Cône (rayon r, hauteur h)</td><td>V = <span class="frac"><span>π × r² × h</span><span>3</span></span></td></tr>
+          <tr><td>Boule (rayon r)</td><td>V = (<span class="frac"><span>4</span><span>3</span></span>) × π × r³</td></tr>
         </table>
         <div class="tip">π ≈ 3,14159… Utilise la touche π de ta calculatrice pour plus de précision.</div>
       </div>
@@ -1399,8 +1417,8 @@
             <div class="answer-label">Correction</div>
             <ol>
               <li>A = π × 5² = 25π ≈ <strong>78,54 cm²</strong></li>
-              <li>A = (12 × 7) / 2 = <strong>42 cm²</strong></li>
-              <li>A = (10 + 6) × 4 / 2 = 16 × 2 = <strong>32 cm²</strong></li>
+              <li>A = <span class="frac"><span>12 × 7</span><span>2</span></span> = <strong>42 cm²</strong></li>
+              <li>A = (10 + 6) × <span class="frac"><span>4</span><span>2</span></span> = 16 × 2 = <strong>32 cm²</strong></li>
             </ol>
           </div>
         </div>
@@ -1417,8 +1435,8 @@
             <div class="answer-label">Correction</div>
             <ol>
               <li>V = π × 3² × 10 = 90π ≈ <strong>282,74 cm³</strong></li>
-              <li>V = (4/3) × π × 6³ = (4/3) × π × 216 = 288π ≈ <strong>904,78 cm³</strong></li>
-              <li>Base = 4² = 16 cm² → V = 16 × 9 / 3 = <strong>48 cm³</strong></li>
+              <li>V = (<span class="frac"><span>4</span><span>3</span></span>) × π × 6³ = (<span class="frac"><span>4</span><span>3</span></span>) × π × 216 = 288π ≈ <strong>904,78 cm³</strong></li>
+              <li>Base = 4² = 16 cm² → V = 16 × <span class="frac"><span>9</span><span>3</span></span> = <strong>48 cm³</strong></li>
             </ol>
           </div>
         </div>
@@ -1441,15 +1459,15 @@
 
       <div class="block">
         <h4>Problème 1 — Pythagore + fractions</h4>
-        <p>Un terrain rectangulaire mesure 3/4 km de long et 1/2 km de large. Quelle est la longueur de sa diagonale ? (arrondi au centième de km)</p>
+        <p>Un terrain rectangulaire mesure <span class="frac"><span>3</span><span>4</span></span> km de long et <span class="frac"><span>1</span><span>2</span></span> km de large. Quelle est la longueur de sa diagonale ? (arrondi au centième de km)</p>
         <label class="field-label">Ta résolution</label>
         <textarea class="user-textarea" data-key="bilan-pb1" placeholder="Dessine un schéma, applique Pythagore aux mesures en km…"></textarea>
         <div class="answer-block">
           <button class="toggle-answer" onclick="toggleAnswer(this)">Afficher la correction</button>
           <div class="answer">
             <div class="answer-label">Correction</div>
-            <p>d² = (3/4)² + (1/2)² = 9/16 + 4/16 = 13/16</p>
-            <p>d = √(13/16) = √13 / 4 ≈ 3,606/4 ≈ <strong>0,90 km</strong></p>
+            <p>d² = (<span class="frac"><span>3</span><span>4</span></span>)² + (<span class="frac"><span>1</span><span>2</span></span>)² = <span class="frac"><span>9</span><span>16</span></span> + <span class="frac"><span>4</span><span>16</span></span> = <span class="frac"><span>13</span><span>16</span></span></p>
+            <p>d = √(<span class="frac"><span>13</span><span>16</span></span>) = <span class="frac"><span>√13</span><span>4</span></span> ≈ <span class="frac"><span>3,606</span><span>4</span></span> ≈ <strong>0,90 km</strong></p>
           </div>
         </div>
       </div>
@@ -1464,8 +1482,8 @@
           <div class="answer">
             <div class="answer-label">Correction</div>
             <p>Soit x le prix initial.</p>
-            <p>Après réduction de 20 % : x × (1 − 20/100) = x × 0,8 = 48</p>
-            <p>x = 48 / 0,8 = <strong>60 €</strong></p>
+            <p>Après réduction de 20 % : x × (1 − <span class="frac"><span>20</span><span>100</span></span>) = x × 0,8 = 48</p>
+            <p>x = <span class="frac"><span>48</span><span>0,8</span></span> = <strong>60 €</strong></p>
             <p><em>Vérification : 60 × 0,8 = 48 ✓</em></p>
           </div>
         </div>
@@ -1485,8 +1503,8 @@
           <div class="answer">
             <div class="answer-label">Correction</div>
             <p>Total : 4 + 3 + 5 = 12 billes</p>
-            <p><strong>a)</strong> P(bleue) = 3/12 = <strong>1/4</strong></p>
-            <p><strong>b)</strong> P(verte) = 5/12 → sur 60 tirages : 60 × 5/12 = <strong>25 fois</strong></p>
+            <p><strong>a)</strong> P(bleue) = <span class="frac"><span>3</span><span>12</span></span> = <strong><span class="frac"><span>1</span><span>4</span></span></strong></p>
+            <p><strong>b)</strong> P(verte) = <span class="frac"><span>5</span><span>12</span></span> → sur 60 tirages : 60 × <span class="frac"><span>5</span><span>12</span></span> = <strong>25 fois</strong></p>
           </div>
         </div>
       </div>
